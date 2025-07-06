@@ -1,0 +1,25 @@
+// Custom styles for IEP site
+
+// Profile image backgrounds (override with your own images)
+.iep-profile-img-nic {
+  background-image: url('/images/headshot-nic.jpg'); // Replace with actual image path
+}
+
+.iep-profile-img-derek {
+  background-image: url('/images/headshot-derek.png'); // Replace with actual image path
+}
+
+// Example: Custom card shadow or border
+.iep-team-card {
+  // Add custom shadow, border, or transition overrides here
+}
+
+// Example: Custom text styling for member name/role
+.iep-member-name {
+  // font-size, color, etc.
+}
+.iep-member-role {
+  // font-style, color, etc.
+}
+
+// Add more custom styles as needed for your site 
