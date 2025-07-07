@@ -6,4 +6,8 @@
   background-image: url("/images/headshot-derek.png");
 }
 
+.iep-past-companies-section {
+  display: none;
+}
+
 /*# sourceMappingURL=custom.css.map */
