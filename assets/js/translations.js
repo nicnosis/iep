@@ -243,9 +243,9 @@ class IEPTranslator {
     }
     
     createLanguageSelector() {
-        const nav = document.querySelector('nav .flex.justify-between');
-        if (!nav) return;
-        
+        const container = document.getElementById('language-selector-container');
+        if (!container) return;
+
         // Desktop language selector (inline)
         const desktopLanguageSelector = document.createElement('div');
         desktopLanguageSelector.className = 'hidden md:flex items-center space-x-1 text-sm';
@@ -256,7 +256,7 @@ class IEPTranslator {
             <span class="text-gray-400">|</span>
             <button class="language-option-inline text-gray-600 hover:text-gray-900 transition-colors" data-lang="pt">PT</button>
         `;
-        
+
         // Mobile language selector (dropdown)
         const mobileLanguageSelector = document.createElement('div');
         mobileLanguageSelector.className = 'md:hidden relative';
@@ -275,14 +275,11 @@ class IEPTranslator {
                 </div>
             </div>
         `;
-        
-        // Insert both selectors before the existing nav items
-        const existingNav = nav.querySelector('.hidden.md\\:flex');
-        if (existingNav) {
-            existingNav.parentNode.insertBefore(desktopLanguageSelector, existingNav);
-            existingNav.parentNode.insertBefore(mobileLanguageSelector, existingNav);
-        }
-        
+
+        // Append both selectors to the container
+        container.appendChild(desktopLanguageSelector);
+        container.appendChild(mobileLanguageSelector);
+
         // Add event listeners for desktop inline buttons
         document.querySelectorAll('.language-option-inline').forEach(option => {
             option.addEventListener('click', (e) => {
@@ -291,18 +288,18 @@ class IEPTranslator {
                 this.setLanguage(lang);
             });
         });
-        
+
         // Add event listeners for mobile dropdown
         document.getElementById('language-btn').addEventListener('click', (e) => {
             e.stopPropagation();
             const dropdown = document.getElementById('language-dropdown');
             dropdown.classList.toggle('hidden');
         });
-        
+
         document.addEventListener('click', () => {
             document.getElementById('language-dropdown').classList.add('hidden');
         });
-        
+
         document.querySelectorAll('.language-option').forEach(option => {
             option.addEventListener('click', (e) => {
                 e.stopPropagation();

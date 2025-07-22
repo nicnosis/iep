@@ -33,9 +33,12 @@
                     <img src="illustrator/spiral.svg" alt="IEP Logo" class="h-8 w-8 mr-2">
                     <span class="text-2xl font-semibold text-gray-900">IEP</span>
                 </div>
-                <div class="hidden md:flex space-x-8">
-                    <a href="#what-we-do" class="text-gray-600 hover:text-gray-900" data-translate="nav.what-we-do">What We Do</a>
-                    <a href="https://40t426.share-na2.hsforms.com/2ly1L36UdQSm6quKAxdI2Dg" class="text-gray-600 hover:text-gray-900" data-translate="nav.invest">Invest With Us</a>
+                <div class="flex items-center space-x-8">
+                    <div class="hidden md:flex space-x-8">
+                        <a href="#what-we-do" class="text-gray-600 hover:text-gray-900" data-translate="nav.what-we-do">What We Do</a>
+                        <a href="https://40t426.share-na2.hsforms.com/2ly1L36UdQSm6quKAxdI2Dg" class="text-gray-600 hover:text-gray-900" data-translate="nav.invest">Invest With Us</a>
+                    </div>
+                    <div id="language-selector-container"></div>
                 </div>
             </div>
         </div>
@@ -57,7 +60,7 @@
                 <p class="text-xl md:text-2xl text-gray-100 mb-8 max-w-3xl mx-auto" data-translate="hero.subtitle">
                     International Energy Partners connects visionary investors with transformative clean energy projects worldwide.
                 </p>
-                <a href="#invest" class="inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-gray-900 bg-white hover:bg-gray-50 transition duration-150" data-translate="hero.cta">
+                <a href="#invest" class="inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-gray-900 bg-white hover:bg-gray-50 transition duration-150 smooth-scroll" data-translate="hero.cta">
                     Partner With Us
                 </a>
             </div>
@@ -323,14 +326,8 @@
                         </li>
                     </ul>
                     <div class="pt-4">
-                        <a href="#invest" class="inline-flex items-center px-6 py-3 text-base font-medium rounded-md text-white bg-green-700 hover:bg-green-800 transition duration-150 shadow-sm">
-                            <svg class="mr-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                            </svg>
-                            <span data-translate="investment.cta">Request Investment Memorandum</span>
-                            <svg class="ml-2 -mr-1 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                            </svg>
+                        <a id="memorandum-btn" href="#invest" class="inline-flex items-center px-6 py-3 text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 transition duration-150 smooth-scroll">
+                            Learn More
                         </a>
                     </div>
                 </div>
@@ -350,14 +347,16 @@
     <!-- Invest With Us Section -->
     <section id="invest" class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="bg-gradient-to-r from-blue-600 to-green-500 rounded-2xl overflow-hidden shadow-xl">
-                <div class="px-8 py-16 sm:px-16 sm:py-20 text-center text-white">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-4" data-translate="invest.title">Invest With Us</h2>
-                    <p class="text-xl mb-8 max-w-2xl mx-auto" data-translate="invest.subtitle">
+            <div class="flex justify-center">
+                <div class="bg-white rounded-3xl shadow-2xl border border-gray-100 p-12 w-full max-w-2xl text-center flex flex-col items-center">
+                    <h2 class="text-4xl font-extrabold text-gray-900 mb-4" data-translate="invest.title">Invest With Us</h2>
+                    <p class="text-xl text-gray-600 mb-8 max-w-xl" data-translate="invest.subtitle">
                         Join our network of global investors and be part of the clean energy revolution. Minimum investment starting at $1M USD.
                     </p>
-                    <a href="https://40t426.share-na2.hsforms.com/2ly1L36UdQSm6quKAxdI2Dg" class="inline-flex items-center px-8 py-3 border-2 border-white text-base font-medium rounded-md text-white hover:bg-white hover:text-blue-600 transition duration-150" data-translate="invest.cta">
-                        Contact Our Investment Team
+                    <a href="https://40t426.share-na2.hsforms.com/2ly1L36UdQSm6quKAxdI2Dg" class="inline-flex items-center px-10 py-4 text-xl font-bold rounded-full text-white bg-gradient-to-r from-green-500 via-blue-500 to-purple-500 shadow-xl hover:scale-105 hover:shadow-2xl transition-all duration-200 animate-pulse" style="letter-spacing:0.03em;">
+                        <svg class="mr-3 h-7 w-7 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                        Request Presentation Deck
+                        <svg class="ml-3 h-7 w-7 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                     </a>
                 </div>
             </div>
@@ -424,6 +423,34 @@
                     "paneProperties.vertGridProperties.color": "#E3E3E3",
                     "paneProperties.horzGridProperties.color": "#E3E3E3"
                 }
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        // Manus slide deck link variable
+        const MANUS_SLIDE_DECK_URL = "https://hgukjzfj.manus.space/";
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Smooth scroll for all anchor links to #invest
+            document.querySelectorAll('a[href="#invest"]').forEach(function(link) {
+                link.addEventListener('click', function(e) {
+                    const investSection = document.getElementById('invest');
+                    if (investSection) {
+                        e.preventDefault();
+                        investSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+
+            // Add smooth scroll for all .smooth-scroll links to #invest
+            document.querySelectorAll('a.smooth-scroll[href="#invest"]').forEach(function(link) {
+                link.addEventListener('click', function(e) {
+                    const investSection = document.getElementById('invest');
+                    if (investSection) {
+                        e.preventDefault();
+                        investSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
             });
         });
     </script>
