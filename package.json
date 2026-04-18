@@ -1,8 +1,7 @@
 {
   "name": "iep",
   "version": "1.0.0",
-  "main": "config.js",
-  "scripts": {
+"scripts": {
     "scss": "sass assets/css/custom.scss assets/css/custom.css --watch",
     "serve": "browser-sync start --server --files 'assets/css/*.css, *.html'",
     "dev": "npm-run-all --parallel scss serve"
