@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>IEP — Direction Exploration</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500;600&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body { background: #111; font-family: sans-serif; }
+
+  /* ── Toggle bar ── */
+  #controls {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  #controls span {
+    color: rgba(255,255,255,0.4);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-family: monospace;
+    margin-right: 4px;
+  }
+  .tog {
+    border: 1px solid rgba(255,255,255,0.25);
+    background: transparent;
+    color: rgba(255,255,255,0.6);
+    padding: 6px 16px;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: all 0.15s;
+  }
+  .tog:hover { border-color: rgba(255,255,255,0.6); color: #fff; }
+  .tog.active { background: #fff; color: #000; border-color: #fff; }
+
+  /* ── Hero wrapper ── */
+  .hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .hero video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    transition: background 0.4s ease;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 0 80px;
+    max-width: 900px;
+  }
+
+  .hero-eyebrow {
+    display: block;
+    margin-bottom: 20px;
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    transition: color 0.3s, font-family 0.3s;
+  }
+
+  .hero-headline {
+    line-height: 1.02;
+    margin-bottom: 28px;
+    transition: color 0.3s, font-family 0.3s, font-size 0.3s;
+  }
+
+  .hero-sub {
+    max-width: 52ch;
+    line-height: 1.6;
+    margin-bottom: 40px;
+    transition: color 0.3s, font-family 0.3s, font-size 0.3s;
+  }
+
+  .hero-cta {
+    display: inline-block;
+    padding: 14px 32px;
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s;
+  }
+
+  .hero-nav {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 32px 80px;
+  }
+
+  .hero-logo {
+    font-size: 13px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    transition: color 0.3s, font-family 0.3s;
+  }
+
+  .hero-nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+
+  .hero-nav-links a {
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  /* ════════════════════════════════
+     DIRECTION A — Institutional Light
+     White overlay, navy text, clean
+  ════════════════════════════════ */
+  body[data-dir="A"] .hero-overlay {
+    background: linear-gradient(100deg, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.82) 50%, rgba(255,255,255,0.3) 100%);
+  }
+  body[data-dir="A"] .hero-logo { color: #0B2240; font-family: 'Inter', sans-serif; font-weight: 500; }
+  body[data-dir="A"] .hero-nav-links a { color: #0B2240; }
+  body[data-dir="A"] .hero-eyebrow { color: #1A6B4A; font-family: 'Inter', sans-serif; font-weight: 500; }
+  body[data-dir="A"] .hero-headline { color: #0B2240; font-family: 'Inter', sans-serif; font-size: 72px; font-weight: 600; letter-spacing: -0.02em; }
+  body[data-dir="A"] .hero-sub { color: #2D4A6B; font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 300; }
+  body[data-dir="A"] .hero-cta { background: #0B2240; color: #fff; font-family: 'Inter', sans-serif; }
+  body[data-dir="A"] .hero-cta:hover { background: #1A6B4A; }
+
+  /* ════════════════════════════════
+     DIRECTION B — Dark / Cinematic
+     Near-black, warm brass accent
+  ════════════════════════════════ */
+  body[data-dir="B"] .hero-overlay {
+    background: linear-gradient(100deg, rgba(8,8,10,0.88) 0%, rgba(8,8,10,0.75) 60%, rgba(8,8,10,0.3) 100%);
+  }
+  body[data-dir="B"] .hero-logo { color: #E8E2D6; font-family: 'EB Garamond', serif; font-weight: 400; font-size: 14px; letter-spacing: 0.28em; }
+  body[data-dir="B"] .hero-nav-links a { color: rgba(232,226,214,0.7); }
+  body[data-dir="B"] .hero-eyebrow { color: #B08A4A; font-family: monospace; }
+  body[data-dir="B"] .hero-headline { color: #E8E2D6; font-family: 'EB Garamond', serif; font-size: 88px; font-weight: 400; font-style: italic; letter-spacing: -0.01em; }
+  body[data-dir="B"] .hero-sub { color: rgba(232,226,214,0.65); font-family: 'Inter', sans-serif; font-size: 17px; font-weight: 300; }
+  body[data-dir="B"] .hero-cta { background: transparent; color: #B08A4A; font-family: monospace; border: 1px solid #B08A4A; }
+  body[data-dir="B"] .hero-cta:hover { background: #B08A4A; color: #08080A; }
+
+  /* ════════════════════════════════
+     DIRECTION C — Editorial Warm
+     Cream/paper tones, ink, restrained
+  ════════════════════════════════ */
+  body[data-dir="C"] .hero-overlay {
+    background: linear-gradient(100deg, rgba(245,240,230,0.94) 0%, rgba(245,240,230,0.85) 55%, rgba(245,240,230,0.25) 100%);
+  }
+  body[data-dir="C"] .hero-logo { color: #1A1610; font-family: 'Libre Baskerville', serif; font-weight: 400; letter-spacing: 0.18em; }
+  body[data-dir="C"] .hero-nav-links a { color: #3A2E20; }
+  body[data-dir="C"] .hero-eyebrow { color: #7A5C2E; font-family: 'Lato', sans-serif; font-weight: 300; }
+  body[data-dir="C"] .hero-headline { color: #1A1610; font-family: 'Cormorant Garamond', serif; font-size: 96px; font-weight: 300; letter-spacing: -0.01em; }
+  body[data-dir="C"] .hero-sub { color: #3A2E20; font-family: 'Lato', sans-serif; font-size: 17px; font-weight: 300; line-height: 1.7; }
+  body[data-dir="C"] .hero-cta { background: #1A1610; color: #F5F0E6; font-family: 'Lato', sans-serif; font-weight: 400; }
+  body[data-dir="C"] .hero-cta:hover { background: #7A5C2E; }
+
+  /* ════════════════════════════════
+     DIRECTION D — Modern Dark + Green
+     Clean dark, electric green accent
+  ════════════════════════════════ */
+  body[data-dir="D"] .hero-overlay {
+    background: linear-gradient(100deg, rgba(5,15,10,0.91) 0%, rgba(5,15,10,0.78) 55%, rgba(5,15,10,0.25) 100%);
+  }
+  body[data-dir="D"] .hero-logo { color: #E8F5EE; font-family: 'DM Sans', sans-serif; font-weight: 500; letter-spacing: 0.18em; }
+  body[data-dir="D"] .hero-nav-links a { color: rgba(232,245,238,0.7); }
+  body[data-dir="D"] .hero-eyebrow { color: #00C26A; font-family: 'DM Sans', sans-serif; font-weight: 500; }
+  body[data-dir="D"] .hero-headline { color: #E8F5EE; font-family: 'DM Sans', sans-serif; font-size: 76px; font-weight: 300; letter-spacing: -0.03em; line-height: 1.0; }
+  body[data-dir="D"] .hero-sub { color: rgba(232,245,238,0.6); font-family: 'DM Sans', sans-serif; font-size: 18px; font-weight: 300; }
+  body[data-dir="D"] .hero-cta { background: #00C26A; color: #050F0A; font-family: 'DM Sans', sans-serif; font-weight: 500; border-radius: 2px; }
+  body[data-dir="D"] .hero-cta:hover { background: #00E87C; }
+
+</style>
+</head>
+<body data-dir="A">
+
+<div id="controls">
+  <span>Direction</span>
+  <button class="tog active" onclick="setDir('A', this)">A — Institutional</button>
+  <button class="tog" onclick="setDir('B', this)">B — Dark / Cinematic</button>
+  <button class="tog" onclick="setDir('C', this)">C — Editorial Warm</button>
+  <button class="tog" onclick="setDir('D', this)">D — Modern Dark + Green</button>
+</div>
+
+<section class="hero">
+  <video autoplay muted loop playsinline>
+    <source src="../video/hero-windmills.mp4" type="video/mp4">
+  </video>
+  <div class="hero-overlay"></div>
+
+  <nav class="hero-nav">
+    <div class="hero-logo">International Energy Partners</div>
+    <ul class="hero-nav-links">
+      <li><a href="#">What We Do</a></li>
+      <li><a href="#">The Fund</a></li>
+      <li><a href="#">Invest</a></li>
+    </ul>
+  </nav>
+
+  <div class="hero-content">
+    <span class="hero-eyebrow">International Energy Partners</span>
+    <h1 class="hero-headline">The Future,<br>Financed.</h1>
+    <p class="hero-sub">We connect disciplined capital with the infrastructure, companies, and commodities powering the next American energy decade.</p>
+    <button class="hero-cta">Partner With Us</button>
+  </div>
+</section>
+
+<script>
+  function setDir(dir, btn) {
+    document.body.setAttribute('data-dir', dir);
+    document.querySelectorAll('.tog').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+</script>
+
+</body>
+</html>
