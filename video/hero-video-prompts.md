@@ -2,6 +2,9 @@
 8 clips × ~3 seconds. Generate 4x variations each, pick best take.
 Settings: Google Flow — VEO 3.1 Lite, 16:9, ~3s, 4 variations.
 
+> **Note:** All VEO outputs have a watermark in the lower right corner. Crop it out in editing or use CSS `object-position` to push that corner out of frame.
+> **Watch for hallucinations:** Check outputs for physically impossible details (e.g. multiple charging ports on one vehicle). Discard and regenerate if found.
+
 ---
 
 **1. LNG Tanker — Aerial**
