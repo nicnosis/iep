@@ -1,6 +1,6 @@
 # Hero Video Prompts — IEP
 8 clips × ~3 seconds. Generate 4x variations each, pick best take.
-Settings: 16:9, ~3s, 4 variations.
+Settings: Google Flow — VEO 3.1 Lite, 16:9, ~3s, 4 variations.
 
 ---
 
