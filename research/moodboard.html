@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clean Energy Investment Firms — Brand Research Moodboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #0d0d0d;
+            color: #e0e0e0;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+
+        /* Header / Intro Section */
+        .header {
+            margin-bottom: 80px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 60px;
+        }
+
+        .header h1 {
+            font-size: 3.2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #00d9ff, #00ff88);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            color: #b0b0b0;
+            max-width: 900px;
+            line-height: 1.8;
+        }
+
+        .header .subtitle {
+            font-size: 0.95rem;
+            color: #888;
+            margin-top: 12px;
+            font-weight: 300;
+        }
+
+        /* Firms Grid */
+        .firms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+
+        .firm-card {
+            background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%);
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 40px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .firm-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #00d9ff, #00ff88, #ff006e);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .firm-card:hover {
+            border-color: #444;
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 217, 255, 0.1);
+        }
+
+        .firm-card:hover::before {
+            opacity: 1;
+        }
+
+        .firm-number {
+            display: inline-block;
+            background: #00d9ff;
+            color: #0d0d0d;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+        }
+
+        .firm-name {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+
+        .firm-url {
+            font-size: 0.85rem;
+            color: #888;
+            margin-bottom: 24px;
+            word-break: break-all;
+        }
+
+        .section-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #00d9ff;
+            margin-top: 24px;
+            margin-bottom: 12px;
+        }
+
+        .section-title:first-of-type {
+            margin-top: 0;
+        }
+
+        .section-content {
+            font-size: 0.95rem;
+            color: #d0d0d0;
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+
+        .section-content strong {
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .what-to-steal {
+            background: rgba(0, 217, 255, 0.05);
+            border-left: 3px solid #00d9ff;
+            padding: 16px;
+            margin-top: 24px;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            color: #b0e0ff;
+            font-style: italic;
+        }
+
+        /* Synthesis Section */
+        .synthesis-section {
+            margin-top: 100px;
+            border-top: 1px solid #333;
+            padding-top: 60px;
+        }
+
+        .synthesis-section h2 {
+            font-size: 2.4rem;
+            font-weight: 700;
+            margin-bottom: 40px;
+            color: #fff;
+        }
+
+        .synthesis-subsection {
+            margin-bottom: 50px;
+        }
+
+        .synthesis-subsection h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #00ff88;
+            margin-bottom: 20px;
+        }
+
+        .synthesis-content {
+            color: #d0d0d0;
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+
+        .synthesis-content p {
+            margin-bottom: 16px;
+        }
+
+        .synthesis-content ul {
+            list-style: none;
+            margin-left: 0;
+            margin-bottom: 16px;
+        }
+
+        .synthesis-content li {
+            margin-bottom: 12px;
+            padding-left: 24px;
+            position: relative;
+        }
+
+        .synthesis-content li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #00d9ff;
+            font-weight: 700;
+        }
+
+        .takeaways {
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.1), rgba(0, 255, 136, 0.05));
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 32px;
+            margin-top: 40px;
+        }
+
+        .takeaways h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #00d9ff;
+            margin-bottom: 20px;
+        }
+
+        .takeaway-item {
+            margin-bottom: 16px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #333;
+        }
+
+        .takeaway-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .takeaway-item strong {
+            color: #00ff88;
+            font-weight: 600;
+        }
+
+        .takeaway-item p {
+            color: #b0b0b0;
+            font-size: 0.95rem;
+            margin-top: 6px;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 80px;
+            padding-top: 40px;
+            border-top: 1px solid #333;
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Sticky Nav */
+        .sticky-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(13, 13, 13, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid #222;
+            z-index: 100;
+            padding: 0 40px;
+            display: flex;
+            align-items: center;
+            gap: 0;
+            overflow-x: auto;
+            scrollbar-width: none;
+            height: 48px;
+        }
+
+        .sticky-nav::-webkit-scrollbar { display: none; }
+
+        .sticky-nav a {
+            color: #666;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 500;
+            white-space: nowrap;
+            padding: 0 14px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            border-right: 1px solid #1e1e1e;
+            transition: color 0.15s;
+        }
+
+        .sticky-nav a:first-child { padding-left: 0; }
+        .sticky-nav a:hover { color: #e0e0e0; }
+
+        .sticky-nav .nav-synthesis {
+            margin-left: auto;
+            color: #00d9ff;
+            border-right: none;
+            padding-right: 0;
+        }
+
+        .sticky-nav .nav-synthesis:hover { color: #66eaff; }
+
+        body { padding-top: 48px; }
+
+        /* Firm URL link */
+        .firm-url a {
+            color: #555;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.15s;
+        }
+
+        .firm-url a:hover { color: #00d9ff; }
+
+        /* Visit button */
+        .visit-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 20px;
+            padding: 8px 16px;
+            background: transparent;
+            border: 1px solid #333;
+            border-radius: 6px;
+            color: #888;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            transition: all 0.15s;
+        }
+
+        .visit-btn:hover {
+            border-color: #00d9ff;
+            color: #00d9ff;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 24px;
+            }
+
+            .header h1 {
+                font-size: 2.2rem;
+            }
+
+            .firms-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .firm-card {
+                padding: 30px;
+            }
+
+            .synthesis-section h2 {
+                font-size: 1.8rem;
+            }
+
+            .synthesis-subsection h3 {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="sticky-nav">
+        <a href="#firm-1">1. ECP</a>
+        <a href="#firm-2">2. Riverstone</a>
+        <a href="#firm-3">3. EIP</a>
+        <a href="#firm-4">4. First Reserve</a>
+        <a href="#firm-5">5. Breakthrough</a>
+        <a href="#firm-6">6. Stonepeak</a>
+        <a href="#firm-7">7. GIP</a>
+        <a href="#firm-8">8. Generate</a>
+        <a href="#firm-9">9. Clean Energy V.</a>
+        <a href="#synthesis" class="nav-synthesis">Synthesis ↓</a>
+    </nav>
+
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>Clean Energy Investment Brands</h1>
+            <p>Competitive brand research for <strong>Spectre Equity</strong>. This moodboard analyzes the visual and non-visual identity of nine leading clean energy and infrastructure investment firms, identifying category conventions, distinctive choices, and strategic takeaways for positioning a new entrant in this space.</p>
+            <p class="subtitle">Research conducted April 2026 | 9 firms analyzed | Full visual and linguistic audit</p>
+        </div>
+
+        <!-- Firms Grid -->
+        <div class="firms-grid">
+            <!-- 1. ECP -->
+            <div class="firm-card" id="firm-1">
+                <div class="firm-number">1</div>
+                <div class="firm-name">Energy Capital Partners</div>
+                <div class="firm-url"><a href="https://www.ecpgp.com" target="_blank" rel="noopener">ecpgp.com</a></div>
+
+                <div class="section-title">Visual Identity</div>
+                <div class="section-content">
+                    <strong>Color:</strong> Light background, dark text, light blue/teal accents. Light mode.<br>
+                    <strong>Typography:</strong> Sans-serif, clean and modern, geometric feel.<br>
+                    <strong>Imagery:</strong> Infrastructure photography (wind turbines), data/charts, team headshots. Renewable energy focus.<br>
+                    <strong>Motion:</strong> Subtle background video in hero section.<br>
+                    <strong>Layout:</strong> Minimal, spacious, centered. Clear numerical statistics.<br>
+                    <strong>Logo:</strong> Wordmark only, bold sans-serif 'ECP'.
+                </div>
+
+                <div class="section-title">Non-Visual Identity</div>
+                <div class="section-content">
+                    <strong>Headline:</strong> "Powering the future"<br>
+                    <strong>Tone:</strong> Authoritative, institutional, forward-looking.<br>
+                    <strong>Emphasis:</strong> Energy transition, sustainable infrastructure, capital commitments ($37B+), long history, global partners.<br>
+                    <strong>Recurring Language:</strong> "Energy transition," "sustainable infrastructure," "reliable, affordable energy."
+                </div>
+
+                <div class="what-to-steal">
+                    <strong>What to steal:</strong> The use of a subtle, high-quality background video in the hero section effectively conveys infrastructure focus without distraction.
+                </div>
+                <a class="visit-btn" href="https://www.ecpgp.com" target="_blank" rel="noopener">Visit site ↗</a>
+            </div>
+
+            <!-- 2. Riverstone -->
+            <div class="firm-card" id="firm-2">
+                <div class="firm-number">2</div>
+                <div class="firm-name">Riverstone LLC</div>
+                <div class="firm-url"><a href="https://www.riverstonellc.com" target="_blank" rel="noopener">riverstonellc.com</a></div>
+
+                <div class="section-title">Visual Identity</div>
+                <div class="section-content">
+                    <strong>Color:</strong> White background, dark text, medium blue accents. Light mode.<br>
+                    <strong>Typography:</strong> Sans-serif, institutional and professional.<br>
+                    <strong>Imagery:</strong> Infrastructure photography (power lines, sunset), architectural imagery, project photos. Energy infrastructure subjects.<br>
+                    <strong>Motion:</strong> Subtle scroll animation for "SCROLL DOWN" indicator.<br>
+                    <strong>Layout:</strong> Clean, spacious, centered. Prominent hero image.<br>
+                    <strong>Logo:</strong> Wordmark only, classic strong sans-serif.
+                </div>
+
+                <div class="section-title">Non-Visual Identity</div>
+                <div class="section-content">
+                    <strong>Headline:</strong> "We Aim To Build Businesses That Power The World"<br>
+                    <strong>Tone:</strong> Ambitious, authoritative, experienced.<br>
+                    <strong>Emphasis:</strong> Building businesses, powering the world, market-leading returns, domain expertise, 20-year history.<br>
+                    <strong>Recurring Language:</strong> "Build businesses," "power the world," "energy value chain," "market-leading returns."
+                </div>
+
+                <div class="what-to-steal">
+                    <strong>What to steal:</strong> The clear and direct headline effectively communicates core mission and ambition in a single, memorable phrase.
+                </div>
+                <a class="visit-btn" href="https://www.riverstonellc.com" target="_blank" rel="noopener">Visit site ↗</a>
+            </div>
+
+            <!-- 3. Energy Impact Partners -->
+            <div class="firm-card" id="firm-3">
+                <div class="firm-number">3</div>
+                <div class="firm-name">Energy Impact Partners</div>
+                <div class="firm-url"><a href="https://www.energyimpactpartners.com" target="_blank" rel="noopener">energyimpactpartners.com</a></div>
+
+                <div class="section-title">Visual Identity</div>
+                <div class="section-content">
+                    <strong>Color:</strong> White background, dark text, vibrant green accents. Light mode.<br>
+                    <strong>Typography:</strong> Sans-serif, modern and clean, contemporary geometric feel.<br>
+                    <strong>Imagery:</strong> Dynamic abstract animations with glowing lines, laptop/data displays, portfolio company imagery. Technology and energy flow subjects.<br>
+                    <strong>Motion:</strong> Heavy use of motion—animated hero background, hover effects, embedded portfolio videos.<br>
+                    <strong>Layout:</strong> Modern and dynamic, balanced white space, mix of centered and asymmetric elements.<br>
+                    <strong>Logo:</strong> Symbol + wordmark. Stylized 'e' with leaf element.
+                </div>
+
+                <div class="section-title">Non-Visual Identity</div>
+                <div class="section-content">
+                    <strong>Headline:</strong> "Investing in innovative companies powering a better energy future"<br>
+                    <strong>Tone:</strong> Innovative, impactful, collaborative, forward-looking.<br>
+                    <strong>Emphasis:</strong> Innovation, better energy future, transforming global economy, strategic partnerships, portfolio success stories.<br>
+                    <strong>Recurring Language:</strong> "Innovative companies," "better energy future," "transform," "strategic partners," "impact."
+                </div>
+
+                <div class="what-to-steal">
+                    <strong>What to steal:</strong> Vibrant green accent color and dynamic abstract animations effectively communicate innovation and sustainable future focus.
+                </div>
+                <a class="visit-btn" href="https://www.energyimpactpartners.com" target="_blank" rel="noopener">Visit site ↗</a>
+            </div>
+
+            <!-- 4. First Reserve -->
+            <div class="firm-card" id="firm-4">
+                <div class="firm-number">4</div>
+                <div class="firm-name">First Reserve</div>
+                <div class="firm-url"><a href="https://www.firstreserve.com" target="_blank" rel="noopener">firstreserve.com</a></div>
+
+                <div class="section-title">Visual Identity</div>
+                <div class="section-content">
+                    <strong>Color:</strong> Light grey/off-white background, dark text, deep teal/blue accents. Light mode.<br>
+                    <strong>Typography:</strong> Sans-serif, professional and clean, institutional.<br>
+                    <strong>Imagery:</strong> Industrial-themed imagery, professional industrial photography, abstract elements. Energy infrastructure subjects.<br>
+                    <strong>Motion:</strong> Subtle hover effects, no prominent video or scroll animations.<br>
+                    <strong>Layout:</strong> Clean and structured, good white space, centered. Large numerical statistics highlighted.<br>
+                    <strong>Logo:</strong> Wordmark only, strong classic serif font.
+                </div>
+
+                <div class="section-title">Non-Visual Identity</div>
+                <div class="section-content">
+                    <strong>Headline:</strong> "Legacy. Network. Sector Expertise. Experienced Investors for the Evolving Energy Economy"<br>
+                    <strong>Tone:</strong> Experienced, authoritative, stable.<br>
+                    <strong>Emphasis:</strong> Years of experience (40+), capital raised ($34B+), transactions (750+), investment professionals (20+), legacy and expertise.<br>
+                    <strong>Recurring Language:</strong> "Evolving Energy Economy," "legacy," "network," "sector expertise," "investment strategies."
+                </div>
+
+                <div class="what-to-steal">
+                    <strong>What to steal:</strong> Clear, large numerical statistics on the homepage effectively communicate scale and experience at a glance.
+                </div>
+                <a class="visit-btn" href="https://www.firstreserve.com" target="_blank" rel="noopener">Visit site ↗</a>
+            </div>
+
+            <!-- 5. Breakthrough Energy -->
+            <div class="firm-card" id="firm-5">
+                <div class="firm-number">5</div>
+                <div class="firm-name">Breakthrough Energy</div>
+                <div class="firm-url"><a href="https://www.breakthroughenergy.org" target="_blank" rel="noopener">breakthroughenergy.org</a></div>
+
+                <div class="section-title">Visual Identity</div>
+                <div class="section-content">
+                    <strong>Color:</strong> White background, dark text, bright green and deep blue accents. Light mode.<br>
+                    <strong>Typography:</strong> Sans-serif, modern and impactful, contemporary feel.<br>
+                    <strong>Imagery:</strong> Dynamic abstract animations, glowing lines, infrastructure and technology imagery. Technology and innovation subjects.<br>
+                    <strong>Motion:</strong> Heavy motion use—animated hero background, hover effects, embedded portfolio videos.<br>
+                    <strong>Layout:</strong> Modern and dynamic, balanced white space, visual storytelling focus.<br>
+                    <strong>Logo:</strong> Symbol + wordmark, stylized element with leaf-like design.
+                </div>
+
+                <div class="section-title">Non-Visual Identity</div>
+                <div class="section-content">
+                    <strong>Headline:</strong> "No Noise. Just Breakthroughs."<br>
+                    <strong>Tone:</strong> Ambitious, innovative, urgent.<br>
+                    <strong>Emphasis:</strong> Innovation, clean energy breakthroughs, impact, technology discovery/development/deployment.<br>
+                    <strong>Recurring Language:</strong> "Breakthroughs," "clean energy," "innovation," "opportunity ahead."
+                </div>
+
+                <div class="what-to-steal">
+                    <strong>What to steal:</strong> Concise and impactful tagline effectively communicates direct, results-oriented approach to clean energy innovation.
+                </div>
+                <a class="visit-btn" href="https://www.breakthroughenergy.org" target="_blank" rel="noopener">Visit site ↗</a>
+            </div>
+
+            <!-- 6. Stonepeak -->
+            <div class="firm-card" id="firm-6">
+                <div class="firm-number">6</div>
+                <div class="firm-name">Stonepeak</div>
+                <div class="firm-url"><a href="https://www.stonepeakpartners.com" target="_blank" rel="noopener">stonepeakpartners.com</a></div>
+
+                <div class="section-title">Visual Identity</div>
+                <div class="section-content">
+                    <strong>Color:</strong> White background, dark text, deep professional blue accents. Light mode.<br>
+                    <strong>Typography:</strong> Sans-serif, clean and modern, institutional.<br>
+                    <strong>Imagery:</strong> Dynamic video hero section showcasing diverse infrastructure (data centers, shipping, solar, food logistics). Diverse infrastructure subjects.<br>
+                    <strong>Motion:</strong> Prominent background video in hero, subtle scroll animations and transitions.<br>
+                    <strong>Layout:</strong> Modern and spacious, strong visual storytelling, grid-like structure, balanced.<br>
+                    <strong>Logo:</strong> Wordmark only, clean modern sans-serif with subtle stylization.
+                </div>
+
+                <div class="section-title">Non-Visual Identity</div>
+                <div class="section-content">
+                    <strong>Headline:</strong> "We invest in the infrastructure that underpins our daily lives"<br>
+                    <strong>Tone:</strong> Authoritative, impactful, globally-focused.<br>
+                    <strong>Emphasis:</strong> Infrastructure and real assets, global reach, AUM (~$88B), operational expertise, long-term growth.<br>
+                    <strong>Recurring Language:</strong> "Infrastructure," "real assets," "underpins our daily lives," "long term," "operational expertise."
+                </div>
+
+                <div class="what-to-steal">
+                    <strong>What to steal:</strong> High-quality, dynamic background video in hero section immediately conveys breadth and impact of infrastructure investments.
+                </div>
+                <a class="visit-btn" href="https://www.stonepeakpartners.com" target="_blank" rel="noopener">Visit site ↗</a>
+            </div>
+
+            <!-- 7. Global Infrastructure Partners -->
+            <div class="firm-card" id="firm-7">
+                <div class="firm-number">7</div>
+                <div class="firm-name">Global Infrastructure Partners</div>
+                <div class="firm-url"><a href="https://www.global-infra.com" target="_blank" rel="noopener">global-infra.com</a></div>
+
+                <div class="section-title">Visual Identity</div>
+                <div class="section-content">
+                    <strong>Color:</strong> White background, dark text, strong corporate blue accents. Light mode.<br>
+                    <strong>Typography:</strong> Sans-serif, clean and professional, institutional.<br>
+                    <strong>Imagery:</strong> Subtle abstract animation of interconnected lines, high-quality photography of diverse infrastructure types (energy, digital, transport, water). Diverse infrastructure subjects.<br>
+                    <strong>Motion:</strong> Subtle animated background in hero section, no prominent videos.<br>
+                    <strong>Layout:</strong> Clean, organized, spacious. Modular approach, clear hierarchy, prioritizes readability.<br>
+                    <strong>Logo:</strong> Symbol + wordmark. Abstract geometric design in blue, suggesting interconnectedness.
+                </div>
+
+                <div class="section-title">Non-Visual Identity</div>
+                <div class="section-content">
+                    <strong>Headline:</strong> "A leading infrastructure investor."<br>
+                    <strong>Tone:</strong> Authoritative, experienced, focused.<br>
+                    <strong>Emphasis:</strong> Leadership in infrastructure investment, specialization across sectors, in-depth analysis, operational expertise, consistent returns.<br>
+                    <strong>Recurring Language:</strong> "Infrastructure," "leading investor," "operational expertise," "energy transition."
+                </div>
+
+                <div class="what-to-steal">
+                    <strong>What to steal:</strong> Clear and concise tagline immediately establishes position and focus without overstatement.
+                </div>
+                <a class="visit-btn" href="https://www.global-infra.com" target="_blank" rel="noopener">Visit site ↗</a>
+            </div>
+
+            <!-- 8. Generate Capital -->
+            <div class="firm-card" id="firm-8">
+                <div class="firm-number">8</div>
+                <div class="firm-name">Generate Capital</div>
+                <div class="firm-url"><a href="https://www.generatecapital.com" target="_blank" rel="noopener">generatecapital.com</a></div>
+
+                <div class="section-title">Visual Identity</div>
+                <div class="section-content">
+                    <strong>Color:</strong> Dark background (black/dark grey), white and light grey text, vibrant green accents. Dark mode.<br>
+                    <strong>Typography:</strong> Sans-serif, modern and bold, contemporary geometric.<br>
+                    <strong>Imagery:</strong> Dynamic abstract animation of glowing globe/network, professional infrastructure photography, team imagery. Technology and global impact subjects.<br>
+                    <strong>Motion:</strong> Heavy motion use—animated hero background, hover effects, embedded videos and interactive elements.<br>
+                    <strong>Layout:</strong> Modern and dynamic, visually engaging, dark background for sophistication, asymmetric elements.<br>
+                    <strong>Logo:</strong> Symbol + wordmark. Stylized circular 'G' with interconnected design.
+                </div>
+
+                <div class="section-title">Non-Visual Identity</div>
+                <div class="section-content">
+                    <strong>Headline:</strong> "LET'S REBUILD THE WORLD TOGETHER."<br>
+                    <strong>Tone:</strong> Ambitious, collaborative, visionary, urgent.<br>
+                    <strong>Emphasis:</strong> Rebuilding the world, clean energy, multi-technology solutions, project development, flexible financing, sustainability.<br>
+                    <strong>Recurring Language:</strong> "Rebuild the world," "clean energy," "sustainable," "power solutions."
+                </div>
+
+                <div class="what-to-steal">
+                    <strong>What to steal:</strong> Bold and visionary headline effectively communicates ambitious mission and invites collaboration. Dark mode distinguishes from peers.
+                </div>
+                <a class="visit-btn" href="https://www.generatecapital.com" target="_blank" rel="noopener">Visit site ↗</a>
+            </div>
+
+            <!-- 9. Clean Energy Ventures -->
+            <div class="firm-card" id="firm-9">
+                <div class="firm-number">9</div>
+                <div class="firm-name">Clean Energy Ventures</div>
+                <div class="firm-url"><a href="https://www.cleanenergyventures.com" target="_blank" rel="noopener">cleanenergyventures.com</a></div>
+
+                <div class="section-title">Visual Identity</div>
+                <div class="section-content">
+                    <strong>Color:</strong> White background, dark text, vibrant green and deep blue accents in organic shapes. Light mode.<br>
+                    <strong>Typography:</strong> Sans-serif, modern and clean, approachable.<br>
+                    <strong>Imagery:</strong> Dynamic abstract image with flowing shapes, lab/people imagery, natural landscapes (waterfalls, trees), portfolio company logos. Innovation and environmental impact subjects.<br>
+                    <strong>Motion:</strong> Subtle animations for visual elements and hover effects, no prominent hero video.<br>
+                    <strong>Layout:</strong> Modern and clean, good white space, organic shapes for visual breaks, balanced text and visuals.<br>
+                    <strong>Logo:</strong> Symbol + wordmark. Abstract design combining green and blue, resembling leaf or circular motion.
+                </div>
+
+                <div class="section-title">Non-Visual Identity</div>
+                <div class="section-content">
+                    <strong>Headline:</strong> "We Help Founders Build a Cleaner Future."<br>
+                    <strong>Tone:</strong> Aspirational, impactful, collaborative, expert.<br>
+                    <strong>Emphasis:</strong> Helping founders, cleaner future, multi-gigaton scale GHG emissions reduction, disruptive technologies, deep mentorship.<br>
+                    <strong>Recurring Language:</strong> "Cleaner future," "climate tech," "multi-gigaton scale," "GHG emissions reduction," "disruptive technologies."
+                </div>
+
+                <div class="what-to-steal">
+                    <strong>What to steal:</strong> Clear articulation of impact metric ("multi-gigaton scale GHG emissions reduction") directly communicates ambitious environmental goals with tangible measure.
+                </div>
+                <a class="visit-btn" href="https://www.cleanenergyventures.com" target="_blank" rel="noopener">Visit site ↗</a>
+            </div>
+        </div>
+
+        <!-- Synthesis Section -->
+        <div class="synthesis-section" id="synthesis">
+            <h2>Synthesis & Strategic Takeaways</h2>
+
+            <div class="synthesis-subsection">
+                <h3>Visual Patterns (Category Conventions)</h3>
+                <div class="synthesis-content">
+                    <p>Across these nine firms, several visual conventions define the clean energy investment sector:</p>
+                    <ul>
+                        <li><strong>Color Palettes:</strong> White or light backgrounds dominate, paired with dark text. Blue and green accents are nearly universal, subtly signaling stability and environmental focus. Only Generate Capital uses dark mode, positioning itself as more modern and disruptive.</li>
+                        <li><strong>Typography:</strong> Sans-serif fonts are universal. The aesthetic is consistently clean, modern, and institutional—avoiding ornate or traditional feels. This reinforces professionalism and forward-thinking positioning.</li>
+                        <li><strong>Imagery:</strong> Infrastructure photography is foundational—wind turbines, solar panels, industrial sites, data centers. Professional people photography and abstract energy representations are common. The tone is aspirational yet grounded.</li>
+                        <li><strong>Motion & Video:</strong> Subtle background videos in hero sections are a recurring feature, particularly showcasing dynamic infrastructure. Scroll animations are generally understated, maintaining a serious, professional tone.</li>
+                        <li><strong>Layout:</strong> Minimal and spacious layouts with ample white space are standard. Centered or balanced compositions prioritize clarity and ease of navigation over visual complexity.</li>
+                        <li><strong>Logo Style:</strong> Most firms use wordmarks only or symbol + wordmark combinations. Symbols are abstract or geometric, hinting at energy, connectivity, or global reach.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="synthesis-subsection">
+                <h3>Non-Visual Patterns (Language & Values)</h3>
+                <div class="synthesis-content">
+                    <p>The linguistic and tonal patterns reveal shared values and communication strategies:</p>
+                    <ul>
+                        <li><strong>Tone:</strong> Authoritative, institutional, and forward-looking. Expertise, experience, and long-term impact are consistently emphasized.</li>
+                        <li><strong>Emphasis:</strong> Scale (AUM, capital raised, transactions), experience (years in operation), and impact (energy transition, GHG reduction) are the primary messaging pillars. Partnerships and portfolio success are frequently highlighted.</li>
+                        <li><strong>Audience:</strong> Limited partners and institutional investors are the primary audience, followed by potential portfolio companies and strategic partners.</li>
+                        <li><strong>Recurring Language:</strong> "Energy transition," "sustainable infrastructure," "clean energy," "impact," "long-term value," "operational expertise," "global reach." These terms form a shared lexicon defining the sector's mission.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="synthesis-subsection">
+                <h3>Where Firms Diverge</h3>
+                <div class="synthesis-content">
+                    <p><strong>Generate Capital</strong> stands out with its dark mode website and bold, visionary headline ("LET'S REBUILD THE WORLD TOGETHER"), creating a more modern and aggressive brand identity. <strong>Energy Impact Partners</strong> distinguishes itself with vibrant green accents and dynamic animations, positioning as more tech-forward. <strong>Clean Energy Ventures</strong> emphasizes quantified impact ("multi-gigaton scale GHG emissions reduction"), providing a measurable commitment to environmental outcomes that most peers lack.</p>
+                </div>
+            </div>
+
+            <div class="takeaways">
+                <h4>Strategic Takeaways for Spectre Equity</h4>
+                <div class="takeaway-item">
+                    <strong>1. Embrace the Light-Mode Convention—But Selectively Break It</strong>
+                    <p>Light backgrounds with dark text and blue/green accents are category norms. However, Generate Capital's dark mode demonstrates that a bold departure can signal innovation and modernity. Consider dark mode if positioning as a disruptive, tech-enabled alternative to traditional players.</p>
+                </div>
+                <div class="takeaway-item">
+                    <strong>2. Lead with a Memorable, Concise Headline</strong>
+                    <p>The most effective headlines (Riverstone: "We Aim To Build Businesses That Power The World," Breakthrough Energy: "No Noise. Just Breakthroughs," Generate Capital: "LET'S REBUILD THE WORLD TOGETHER") are short, ambitious, and immediately communicable. Avoid generic statements; opt for a single, powerful claim.</p>
+                </div>
+                <div class="takeaway-item">
+                    <strong>3. Quantify Impact, Not Just Returns</strong>
+                    <p>While all firms emphasize AUM and capital raised, Clean Energy Ventures uniquely leads with GHG emissions reduction potential. For Spectre Equity, explicitly tying investments to measurable environmental or economic outcomes (e.g., "X MW of clean energy deployed," "Y jobs created") differentiates and appeals to impact-conscious LPs.</p>
+                </div>
+                <div class="takeaway-item">
+                    <strong>4. Use Motion Strategically for Differentiation</strong>
+                    <p>Most firms use subtle, professional motion. Energy Impact Partners and Generate Capital leverage more dynamic animations to signal innovation. If targeting tech-savvy or younger LPs, consider more prominent motion; if targeting traditional institutions, keep it understated.</p>
+                </div>
+                <div class="takeaway-item">
+                    <strong>5. Invest in High-Quality Hero Imagery or Video</strong>
+                    <p>Stonepeak's dynamic infrastructure video and ECP's subtle background video both effectively communicate sector focus without distraction. A signature visual element—whether a custom video, distinctive photography style, or animated graphic—can become a memorable brand asset.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>Brand Research Moodboard | Spectre Equity Competitive Analysis | April 2026</p>
+        </div>
+    </div>
+</body>
+</html>
