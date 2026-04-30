@@ -3,13 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>IEP — Direction Exploration</title>
+<title>IEP — Brand Directions</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500;600&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=IBM+Plex+Mono:wght@400;500&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=DM+Mono:wght@400;500&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Reddit+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   body { background: #111; font-family: sans-serif; }
 
   /* ── Toggle bar ── */
@@ -47,7 +46,7 @@
   .tog:hover { border-color: rgba(255,255,255,0.6); color: #fff; }
   .tog.active { background: #fff; color: #000; border-color: #fff; }
 
-  /* ── Hero wrapper ── */
+  /* ── Hero ── */
   .hero {
     position: relative;
     width: 100%;
@@ -56,7 +55,6 @@
     align-items: center;
     overflow: hidden;
   }
-
   .hero video {
     position: absolute;
     inset: 0;
@@ -65,155 +63,205 @@
     object-fit: cover;
     object-position: center;
   }
-
   .hero-overlay {
     position: absolute;
     inset: 0;
     transition: background 0.4s ease;
   }
-
   .hero-content {
     position: relative;
     z-index: 2;
     padding: 0 80px;
     max-width: 900px;
   }
-
   .hero-eyebrow {
     display: block;
     margin-bottom: 20px;
-    font-size: 12px;
+    font-size: 11px;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    transition: color 0.3s, font-family 0.3s;
+    transition: all 0.3s;
   }
-
   .hero-headline {
     line-height: 1.02;
     margin-bottom: 28px;
-    transition: color 0.3s, font-family 0.3s, font-size 0.3s;
-  }
-
-  .hero-sub {
-    max-width: 52ch;
-    line-height: 1.6;
-    margin-bottom: 40px;
-    transition: color 0.3s, font-family 0.3s, font-size 0.3s;
-  }
-
-  .hero-cta {
-    display: inline-block;
-    padding: 14px 32px;
-    font-size: 13px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    text-decoration: none;
-    cursor: pointer;
-    border: none;
     transition: all 0.3s;
   }
+  .hero-sub {
+    max-width: 46ch;
+    line-height: 1.6;
+    margin-bottom: 36px;
+    transition: all 0.3s;
+  }
+  .hero-btns {
+    display: flex;
+    gap: 12px;
+  }
+  .hero-cta, .hero-cta-alt {
+    display: inline-block;
+    padding: 13px 28px;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: none;
+    transition: all 0.25s;
+  }
 
+  /* ── Nav ── */
   .hero-nav {
     position: absolute;
-    top: 0; left: 0; right: 0;
+    top: 54px; left: 0; right: 0;
     z-index: 3;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 32px 80px;
+    padding: 24px 80px;
+  }
+  .hero-logo {
+    display: flex;
+    align-items: center;
+    gap: 14px;
   }
 
-  .hero-logo {
-    font-size: 13px;
+  /* ── Diamond glyph (per-direction transform) ── */
+  .glyph {
+    width: 20px;
+    height: 20px;
+    position: relative;
+    flex-shrink: 0;
+    transition: all 0.3s;
+  }
+  .glyph::after {
+    content: "";
+    position: absolute;
+    transition: all 0.3s;
+  }
+
+  .hero-wordmark {
+    font-size: 12px;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    transition: color 0.3s, font-family 0.3s;
+    transition: all 0.3s;
   }
-
   .hero-nav-links {
     display: flex;
     gap: 36px;
     list-style: none;
   }
-
   .hero-nav-links a {
     font-size: 12px;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
     text-decoration: none;
     transition: color 0.3s;
   }
 
   /* ════════════════════════════════
-     DIRECTION A — Institutional Light
-     White overlay, navy text, clean
+     A · Institutional
+     Paper #F5F2EC, navy #0B1A2B, brass #B08A4A, Spectral + Inter
   ════════════════════════════════ */
   body[data-dir="A"] .hero-overlay {
-    background: linear-gradient(100deg, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.82) 50%, rgba(255,255,255,0.3) 100%);
+    background: linear-gradient(105deg, rgba(245,242,236,0.93) 0%, rgba(245,242,236,0.82) 50%, rgba(245,242,236,0.2) 100%);
   }
-  body[data-dir="A"] .hero-logo { color: #0B2240; font-family: 'Inter', sans-serif; font-weight: 500; }
-  body[data-dir="A"] .hero-nav-links a { color: #0B2240; }
-  body[data-dir="A"] .hero-eyebrow { color: #1A6B4A; font-family: 'Inter', sans-serif; font-weight: 500; }
-  body[data-dir="A"] .hero-headline { color: #0B2240; font-family: 'Inter', sans-serif; font-size: 72px; font-weight: 600; letter-spacing: -0.02em; }
-  body[data-dir="A"] .hero-sub { color: #2D4A6B; font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 300; }
-  body[data-dir="A"] .hero-cta { background: #0B2240; color: #fff; font-family: 'Inter', sans-serif; }
-  body[data-dir="A"] .hero-cta:hover { background: #1A6B4A; }
+  body[data-dir="A"] .glyph { border: 1px solid #0B1A2B; transform: rotate(45deg); }
+  body[data-dir="A"] .glyph::after { inset: 4px; border: 1px solid #0B1A2B; }
+  body[data-dir="A"] .hero-wordmark { color: #0B1A2B; font-family: 'Spectral', serif; font-weight: 500; }
+  body[data-dir="A"] .hero-nav-links a { color: #0B1A2B; font-family: 'Inter', sans-serif; font-size: 11px; }
+  body[data-dir="A"] .hero-eyebrow { color: #6B7688; font-family: 'JetBrains Mono', monospace; }
+  body[data-dir="A"] .hero-headline { color: #0B1A2B; font-family: 'Spectral', serif; font-size: 80px; font-weight: 400; letter-spacing: -0.015em; }
+  body[data-dir="A"] .hero-headline em { font-style: italic; color: #B08A4A; }
+  body[data-dir="A"] .hero-sub { color: #27384B; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 300; }
+  body[data-dir="A"] .hero-cta { background: #0B1A2B; color: #F5F2EC; font-family: 'Inter', sans-serif; }
+  body[data-dir="A"] .hero-cta:hover { background: #B08A4A; }
+  body[data-dir="A"] .hero-cta-alt { background: transparent; color: #0B1A2B; border: 1px solid #0B1A2B; font-family: 'Inter', sans-serif; }
 
   /* ════════════════════════════════
-     DIRECTION B — Dark / Cinematic
-     Near-black, warm brass accent
+     B · Stealth Black
+     Obsidian #0D0D0E, gold #C9A961, Inter light
   ════════════════════════════════ */
   body[data-dir="B"] .hero-overlay {
-    background: linear-gradient(100deg, rgba(8,8,10,0.88) 0%, rgba(8,8,10,0.75) 60%, rgba(8,8,10,0.3) 100%);
+    background: linear-gradient(105deg, rgba(13,13,14,0.91) 0%, rgba(13,13,14,0.78) 60%, rgba(13,13,14,0.25) 100%);
   }
-  body[data-dir="B"] .hero-logo { color: #E8E2D6; font-family: 'EB Garamond', serif; font-weight: 400; font-size: 14px; letter-spacing: 0.28em; }
-  body[data-dir="B"] .hero-nav-links a { color: rgba(232,226,214,0.7); }
-  body[data-dir="B"] .hero-eyebrow { color: #B08A4A; font-family: monospace; }
-  body[data-dir="B"] .hero-headline { color: #E8E2D6; font-family: 'EB Garamond', serif; font-size: 88px; font-weight: 400; font-style: italic; letter-spacing: -0.01em; }
-  body[data-dir="B"] .hero-sub { color: rgba(232,226,214,0.65); font-family: 'Inter', sans-serif; font-size: 17px; font-weight: 300; }
-  body[data-dir="B"] .hero-cta { background: transparent; color: #B08A4A; font-family: monospace; border: 1px solid #B08A4A; }
-  body[data-dir="B"] .hero-cta:hover { background: #B08A4A; color: #08080A; }
+  body[data-dir="B"] .glyph { border: 1px solid #C9A961; transform: rotate(45deg); background: linear-gradient(135deg, #1a1a1d, #050506); }
+  body[data-dir="B"] .glyph::after { inset: 5px; background: #C9A961; }
+  body[data-dir="B"] .hero-wordmark { color: #C9A961; font-family: 'Inter', sans-serif; font-weight: 500; letter-spacing: 0.32em; font-size: 11px; }
+  body[data-dir="B"] .hero-nav-links a { color: rgba(237,234,226,0.6); font-family: 'Inter', sans-serif; }
+  body[data-dir="B"] .hero-eyebrow { color: #7C7A72; font-family: 'IBM Plex Mono', monospace; }
+  body[data-dir="B"] .hero-headline { color: #EDEAE2; font-family: 'Inter', sans-serif; font-size: 68px; font-weight: 300; letter-spacing: -0.035em; line-height: 1.04; }
+  body[data-dir="B"] .hero-headline em { font-style: normal; color: #C9A961; font-weight: 400; }
+  body[data-dir="B"] .hero-sub { color: #A8A59E; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 300; }
+  body[data-dir="B"] .hero-cta { background: #C9A961; color: #0D0D0E; font-family: 'Inter', sans-serif; font-weight: 500; letter-spacing: 0.14em; }
+  body[data-dir="B"] .hero-cta:hover { background: #dfca80; }
+  body[data-dir="B"] .hero-cta-alt { background: transparent; color: #EDEAE2; border: 1px solid rgba(42,42,45,0.8); font-family: 'Inter', sans-serif; }
 
   /* ════════════════════════════════
-     DIRECTION C — Editorial Warm
-     Cream/paper tones, ink, restrained
+     C · Clean Energy Green
+     Forest #0E2A22, cream #F2EFE8, moss #9BB99A, Fraunces
   ════════════════════════════════ */
   body[data-dir="C"] .hero-overlay {
-    background: linear-gradient(100deg, rgba(245,240,230,0.94) 0%, rgba(245,240,230,0.85) 55%, rgba(245,240,230,0.25) 100%);
+    background: linear-gradient(105deg, rgba(14,42,34,0.91) 0%, rgba(14,42,34,0.80) 55%, rgba(14,42,34,0.2) 100%);
   }
-  body[data-dir="C"] .hero-logo { color: #1A1610; font-family: 'Libre Baskerville', serif; font-weight: 400; letter-spacing: 0.18em; }
-  body[data-dir="C"] .hero-nav-links a { color: #3A2E20; }
-  body[data-dir="C"] .hero-eyebrow { color: #7A5C2E; font-family: 'Lato', sans-serif; font-weight: 300; }
-  body[data-dir="C"] .hero-headline { color: #1A1610; font-family: 'Cormorant Garamond', serif; font-size: 96px; font-weight: 300; letter-spacing: -0.01em; }
-  body[data-dir="C"] .hero-sub { color: #3A2E20; font-family: 'Lato', sans-serif; font-size: 17px; font-weight: 300; line-height: 1.7; }
-  body[data-dir="C"] .hero-cta { background: #1A1610; color: #F5F0E6; font-family: 'Lato', sans-serif; font-weight: 400; }
-  body[data-dir="C"] .hero-cta:hover { background: #7A5C2E; }
+  body[data-dir="C"] .glyph { background: #F2EFE8; border-radius: 2px; transform: none; }
+  body[data-dir="C"] .glyph::after { inset: 5px; background: #9BB99A; border-radius: 1px; }
+  body[data-dir="C"] .hero-wordmark { color: #F2EFE8; font-family: 'Fraunces', serif; font-weight: 500; letter-spacing: 0.18em; }
+  body[data-dir="C"] .hero-nav-links a { color: rgba(242,239,232,0.65); font-family: 'Inter', sans-serif; }
+  body[data-dir="C"] .hero-eyebrow { color: #9BB99A; font-family: 'DM Mono', monospace; }
+  body[data-dir="C"] .hero-headline { color: #F2EFE8; font-family: 'Fraunces', serif; font-size: 80px; font-weight: 400; letter-spacing: -0.02em; line-height: 0.98; }
+  body[data-dir="C"] .hero-headline em { font-style: italic; color: #9BB99A; }
+  body[data-dir="C"] .hero-sub { color: rgba(242,239,232,0.75); font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 300; }
+  body[data-dir="C"] .hero-cta { background: #F2EFE8; color: #0E2A22; font-family: 'Inter', sans-serif; border-radius: 2px; }
+  body[data-dir="C"] .hero-cta:hover { background: #9BB99A; }
+  body[data-dir="C"] .hero-cta-alt { background: transparent; color: #F2EFE8; border: 1px solid rgba(242,239,232,0.35); font-family: 'Inter', sans-serif; }
 
   /* ════════════════════════════════
-     DIRECTION D — Modern Dark + Green
-     Clean dark, electric green accent
+     D · Editorial
+     Cream #EFEBE0, oxblood #A84C2A, Libre Caslon + Reddit Mono
   ════════════════════════════════ */
   body[data-dir="D"] .hero-overlay {
-    background: linear-gradient(100deg, rgba(5,15,10,0.91) 0%, rgba(5,15,10,0.78) 55%, rgba(5,15,10,0.25) 100%);
+    background: linear-gradient(105deg, rgba(239,235,224,0.94) 0%, rgba(239,235,224,0.86) 50%, rgba(239,235,224,0.2) 100%);
   }
-  body[data-dir="D"] .hero-logo { color: #E8F5EE; font-family: 'DM Sans', sans-serif; font-weight: 500; letter-spacing: 0.18em; }
-  body[data-dir="D"] .hero-nav-links a { color: rgba(232,245,238,0.7); }
-  body[data-dir="D"] .hero-eyebrow { color: #00C26A; font-family: 'DM Sans', sans-serif; font-weight: 500; }
-  body[data-dir="D"] .hero-headline { color: #E8F5EE; font-family: 'DM Sans', sans-serif; font-size: 76px; font-weight: 300; letter-spacing: -0.03em; line-height: 1.0; }
-  body[data-dir="D"] .hero-sub { color: rgba(232,245,238,0.6); font-family: 'DM Sans', sans-serif; font-size: 18px; font-weight: 300; }
-  body[data-dir="D"] .hero-cta { background: #00C26A; color: #050F0A; font-family: 'DM Sans', sans-serif; font-weight: 500; border-radius: 2px; }
-  body[data-dir="D"] .hero-cta:hover { background: #00E87C; }
+  body[data-dir="D"] .glyph { background: #A84C2A; transform: none; }
+  body[data-dir="D"] .glyph::after { display: none; }
+  body[data-dir="D"] .hero-wordmark { color: #1A1916; font-family: 'Libre Caslon Text', serif; font-style: italic; font-size: 17px; letter-spacing: 0; text-transform: none; }
+  body[data-dir="D"] .hero-nav-links a { color: #1A1916; font-family: 'Reddit Mono', monospace; font-size: 10px; letter-spacing: 0.18em; }
+  body[data-dir="D"] .hero-eyebrow { color: #1A1916; font-family: 'Reddit Mono', monospace; font-size: 10px; opacity: 0.7; }
+  body[data-dir="D"] .hero-headline { color: #1A1916; font-family: 'Libre Caslon Text', serif; font-size: 88px; font-weight: 400; letter-spacing: -0.015em; line-height: 0.94; }
+  body[data-dir="D"] .hero-headline em { font-style: italic; color: #A84C2A; }
+  body[data-dir="D"] .hero-sub { color: #1A1916; font-family: 'Libre Caslon Text', serif; font-size: 16px; line-height: 1.6; }
+  body[data-dir="D"] .hero-cta { background: #A84C2A; color: #EFEBE0; font-family: 'Reddit Mono', monospace; font-size: 11px; letter-spacing: 0.18em; }
+  body[data-dir="D"] .hero-cta:hover { background: #c45c34; }
+  body[data-dir="D"] .hero-cta-alt { background: transparent; color: #1A1916; border: 1px solid #1A1916; font-family: 'Reddit Mono', monospace; font-size: 11px; letter-spacing: 0.18em; }
 
+  /* ════════════════════════════════
+     E · Quant Terminal
+     Dark navy #0A0F14, orange #FF7A1A, Space Grotesk + Reddit Mono
+  ════════════════════════════════ */
+  body[data-dir="E"] .hero-overlay {
+    background: linear-gradient(105deg, rgba(10,15,20,0.93) 0%, rgba(10,15,20,0.82) 58%, rgba(10,15,20,0.25) 100%);
+  }
+  body[data-dir="E"] .glyph { border: 1px solid #FF7A1A; transform: none; background: transparent; }
+  body[data-dir="E"] .glyph::after { left: 50%; top: 2px; bottom: 2px; width: 1px; background: #FF7A1A; }
+  body[data-dir="E"] .hero-wordmark { color: #FF7A1A; font-family: 'Reddit Mono', monospace; font-weight: 600; letter-spacing: 0.22em; font-size: 11px; }
+  body[data-dir="E"] .hero-nav-links a { color: rgba(214,225,238,0.6); font-family: 'Reddit Mono', monospace; font-size: 11px; letter-spacing: 0.1em; }
+  body[data-dir="E"] .hero-eyebrow { color: #5C6B7C; font-family: 'Reddit Mono', monospace; }
+  body[data-dir="E"] .hero-headline { color: #D6E1EE; font-family: 'Space Grotesk', sans-serif; font-size: 58px; font-weight: 500; letter-spacing: -0.025em; line-height: 1.02; text-transform: uppercase; }
+  body[data-dir="E"] .hero-headline em { font-style: normal; color: #FF7A1A; }
+  body[data-dir="E"] .hero-sub { color: #9AA8BA; font-family: 'Reddit Mono', monospace; font-size: 13px; line-height: 1.7; }
+  body[data-dir="E"] .hero-cta { background: #FF7A1A; color: #0A0F14; font-family: 'Reddit Mono', monospace; font-weight: 600; font-size: 11px; letter-spacing: 0.14em; }
+  body[data-dir="E"] .hero-cta:hover { background: #ff9044; }
+  body[data-dir="E"] .hero-cta-alt { background: transparent; color: #D6E1EE; border: 1px solid rgba(24,34,46,0.8); font-family: 'Reddit Mono', monospace; font-size: 11px; }
 </style>
 </head>
 <body data-dir="A">
 
 <div id="controls">
   <span>Direction</span>
-  <button class="tog active" onclick="setDir('A', this)">A — Institutional</button>
-  <button class="tog" onclick="setDir('B', this)">B — Dark / Cinematic</button>
-  <button class="tog" onclick="setDir('C', this)">C — Editorial Warm</button>
-  <button class="tog" onclick="setDir('D', this)">D — Modern Dark + Green</button>
+  <button class="tog active" onclick="setDir('A', this)">A · Institutional</button>
+  <button class="tog" onclick="setDir('B', this)">B · Stealth Black</button>
+  <button class="tog" onclick="setDir('C', this)">C · Clean Energy</button>
+  <button class="tog" onclick="setDir('D', this)">D · Editorial</button>
+  <button class="tog" onclick="setDir('E', this)">E · Quant Terminal</button>
 </div>
 
 <section class="hero">
@@ -223,7 +271,10 @@
   <div class="hero-overlay"></div>
 
   <nav class="hero-nav">
-    <div class="hero-logo">International Energy Partners</div>
+    <div class="hero-logo">
+      <div class="glyph"></div>
+      <div class="hero-wordmark">International Energy Partners</div>
+    </div>
     <ul class="hero-nav-links">
       <li><a href="#">What We Do</a></li>
       <li><a href="#">The Fund</a></li>
@@ -233,19 +284,32 @@
 
   <div class="hero-content">
     <span class="hero-eyebrow">International Energy Partners</span>
-    <h1 class="hero-headline">The Future,<br>Financed.</h1>
-    <p class="hero-sub">We connect disciplined capital with the infrastructure, companies, and commodities powering the next American energy decade.</p>
-    <button class="hero-cta">Partner With Us</button>
+    <h1 class="hero-headline" id="headline"></h1>
+    <p class="hero-sub">A private-capital vehicle investing across Liquefied Natural Gas, clean-energy equity, and the charging and data-center infrastructure powering the next American energy decade.</p>
+    <div class="hero-btns">
+      <button class="hero-cta">Request Memo</button>
+      <button class="hero-cta-alt">View Thesis</button>
+    </div>
   </div>
 </section>
 
 <script>
+  const headlines = {
+    A: 'Capital with <em>conviction.</em>',
+    B: 'Quiet capital. <em>Loud results.</em>',
+    C: 'Powering the <em>bridge decade.</em>',
+    D: 'A bridge fuel, <em>told plainly.</em>',
+    E: 'Price is not yet telling the <em>truth.</em>',
+  };
+
   function setDir(dir, btn) {
     document.body.setAttribute('data-dir', dir);
     document.querySelectorAll('.tog').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
+    document.getElementById('headline').innerHTML = headlines[dir];
   }
-</script>
 
+  document.getElementById('headline').innerHTML = headlines['A'];
+</script>
 </body>
 </html>
