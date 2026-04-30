@@ -27,8 +27,8 @@ Low drone shot moving fast above a large pipeline across open landscape.
 
 ---
 
-**5. EV Charging Fleet — Night**
-Wide scanning shot of a large fleet of electric vehicles plugged into charging stations at night. Charger lights glowing. No people.
+**5. EV Charging Stations — Night**
+Row of identical EV charging stations at night. No vehicles, no people. Charger lights glowing.
 
 ---
 
