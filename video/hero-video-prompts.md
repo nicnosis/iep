@@ -4,40 +4,40 @@ Settings: Google Flow — VEO 3.1 Lite, 16:9, ~3s, 4 variations.
 
 ---
 
-**1. LNG Tanker — Aerial Push-In**
-Slow aerial push-in toward a massive LNG tanker moving across open ocean. Camera descends slightly as it advances. Golden hour light, long shadows across the ship's hull, deep blue-green water. Cinematic, wide lens, no visible crew. Slight heat haze on the horizon.
+**1. LNG Tanker — Aerial Tracking**
+Aerial shot tracking alongside a massive LNG tanker at speed across open ocean. Camera moves parallel to the ship at mid-height, slightly ahead of the bow. Wake and white water trailing behind. Golden hour light, long shadows across the hull. Fast, powerful — the ship is clearly moving.
 
 ---
 
-**2. LNG Terminal — Flare Stack at Dusk**
-Static wide shot of an LNG liquefaction terminal at dusk. A flare stack burns orange against a deep blue-purple sky. Industrial scale — towers, pipes, tanks receding into the background. Slow almost imperceptible zoom out. Heat shimmer rising from the facility. No people.
+**2. Cryogenic Storage Tanks — Mist and Condensation**
+Close-up of large spherical LNG cryogenic storage tanks. Cold mist and condensation vapor swirling and drifting off the tank surfaces in the breeze. Camera slowly orbits around the tanks at mid-height. Cool steel surfaces, overcast diffused light. Industrial precision, no fire or flame.
 
 ---
 
-**3. Wind Farm — Aerial Tracking**
-Aerial camera tracking alongside a row of offshore wind turbines, moving parallel to them at mid-height. Late afternoon golden light catches the blades mid-rotation. Camera drifts slightly forward and down. Open sea below. Smooth, gliding motion. Epic scale.
+**3. Wind Turbine — Blade Close-Up**
+Extreme close-up of a single wind turbine blade sweeping past the camera from below. The blade fills the frame and blurs past in motion. Repeat sweep. Sky behind it — partly cloudy, bright. Camera is nearly static, blade does all the movement. Cinematic slow motion feel.
 
 ---
 
-**4. Pipeline — Ground-Level Push**
-Ground-level slow push toward a large steel pipeline running across open landscape — flat plains, overcast sky, diffused light. Camera moves forward along the pipeline centerline, pipeline filling the lower third. Industrial and quiet. No movement except the camera. Slightly desaturated, cool tones.
+**4. Pipeline — Drone Skim**
+Low drone shot skimming just above a large steel pipeline across open plains. Camera races forward at speed, pipeline rushing beneath the frame. Flat landscape, wide sky, overcast light. Fast forward motion, slight camera shake. Industrial scale, no people.
 
 ---
 
-**5. EV Charging Corridor — Night**
-A row of fast-charging stations at night along a highway corridor. A sleek vehicle pulls into frame from the right in motion blur as the camera holds steady. Charger screens glow blue-white. Wet pavement reflects the light. Shallow depth of field. Modern, clean, slightly cinematic.
+**5. EV Charging — Plug Connection Close-Up**
+Extreme close-up of a fast-charging plug being inserted into an EV charging port. Hands and plug move into frame, connect with a click, indicator light activates. Shallow depth of field — background bokeh of a lit charging station at night. Tight, tactile, satisfying.
 
 ---
 
-**6. Data Center — Server Rack Dolly**
-Slow dolly through a corridor of server racks in a large data center. Cool blue and green LED light. Camera moves at low speed down the aisle, racks receding into soft focus on both sides. Subtle blinking lights. Quiet, vast, technological. No people.
+**6. Data Center — Cooling Fan Rack**
+Close-up of a row of server cooling fans spinning at full speed. Camera slowly pushes in. Blue and white LED light. Fans fill the frame, spinning blur at the edges. Clean, technological, slightly hypnotic. No people.
 
 ---
 
-**7. Power Transmission Lines — Looking Up**
-Camera points upward from ground level at high-voltage transmission towers and power lines crossing the frame. Slow tilt up as clouds drift through the sky behind the lines. Overcast or partly cloudy. Steel towers converging toward a vanishing point. Slightly dramatic, wide angle lens distortion.
+**7. Power Transmission Lines — Fast Drive-By**
+Shot from a moving vehicle at speed, looking up and out at high-voltage transmission towers rushing past overhead. Lines and towers strobe rhythmically across the frame. Overcast sky. Camera vibrates slightly with road motion. Fast, industrial, rhythmic.
 
 ---
 
-**8. City Skyline — Night Aerial Drift**
-Wide slow aerial drift over a large city at night. Energy infrastructure visible — lit highways, power grid, industrial waterfront in background. Camera moves slowly left to right. City lights stretch to the horizon. Cinematic color grade — deep blue sky, warm amber city glow below.
+**8. City Energy Grid — Low Aerial Night Rush**
+Low fast aerial moving over a city at night — close enough to see highways and infrastructure rushing below. Energy grid, lit corridors, industrial waterfront. Camera moves quickly forward, city lights streaming past. Deep blue sky above, amber glow below.
