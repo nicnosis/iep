@@ -1,5 +1,5 @@
 # Hero Video Prompts — IEP
-8 clips × ~3 seconds. Generate 4x variations each, pick best take.
+7 clips × ~3 seconds. Generate 4x variations each, pick best take.
 Settings: Google Flow — VEO 3.1 Lite, 16:9, ~3s, 4 variations.
 
 > **Note:** All VEO outputs have a watermark in the lower right corner. Crop it out in editing or use CSS `object-position` to push that corner out of frame.
@@ -37,10 +37,26 @@ Server racks in a large data center. Cool blue light.
 
 ---
 
-**7. Power Transmission Lines**
-High-voltage transmission towers and power lines. Moving camera.
+**7. City at Night — Time Lapse**
+Aerial time-lapse over a large city at night. Car headlights and taillights streak across roads. Energy and motion throughout.
 
 ---
 
-**8. City at Night — Aerial**
-Wide aerial over a large city at night. Slow drift. Energy infrastructure visible.
+## Alternates
+
+Use one of these to replace any clip that doesn't work out. Good substitutes for #7 (power lines — high hallucination risk).
+
+**A. Liquid Drop Macro** ✓
+Extreme macro of a single liquid drop hitting a still surface. Crown splash, expanding ripple rings. Slow motion.
+
+**B. Cryogenic Vapor**
+Dense white cryogenic vapor rolling slowly across a dark metal surface. No people, no containers visible. Just the fog moving low across the frame.
+
+**C. Blue Gas Flame**
+Extreme close-up of a blue natural gas flame burning against a dark background. Only the flame is visible — deep blue core, slight glow at the edges. No machinery, no context.
+
+**D. Molecular Structure — 3D Render**
+Animated 3D scientific visualization of glowing molecules on a dark background. Slow rotation. Clean, precise, no labels or text.
+
+**E. Solar Panel — Close Up**
+Extreme close-up of solar panel cells. Light refracting through the silicon surface. Slow camera drift.

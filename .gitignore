@@ -3,3 +3,7 @@ node_modules/
 *.log
 config.js
 *.css.map
+
+# Video source files — keep only built outputs in git
+video/veo-out/
+video/final/
