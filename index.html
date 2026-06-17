@@ -68,9 +68,24 @@
         .nav-link { position: relative; }
         .nav-link::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 1px; background: #B8924A; transition: width 0.2s ease; }
         .nav-link:hover::after { width: 100%; }
+
+        /* Line-by-line heading reveals */
+        .reveal-line { display: block; opacity: 0; transform: translateY(18px); transition: opacity 0.65s ease, transform 0.65s ease; }
+        .reveal-line.visible { opacity: 1; transform: translateY(0); }
+
+        /* Ticker */
+        .ticker-wrap { overflow: hidden; }
+        .ticker-track { display: flex; white-space: nowrap; animation: ticker-scroll 28s linear infinite; }
+        .ticker-track:hover { animation-play-state: paused; }
+        @keyframes ticker-scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
     </style>
 </head>
 <body class="antialiased">
+
+    <!-- ─── PILLAR PROGRESS BAR ─────────────────────────── -->
+    <div id="pillar-bar" class="fixed left-0 top-0 w-[2px] h-screen z-40 pointer-events-none opacity-0" style="background:rgba(184,146,74,0.18); transition: opacity 0.35s;">
+        <div id="pillar-bar-fill" class="w-full h-full origin-top" style="background:#B8924A; transform: scaleY(0); transition: transform 0.07s linear;"></div>
+    </div>
 
     <!-- ─── NAV ─────────────────────────────────────────── -->
     <nav id="nav" class="fixed top-0 left-0 right-0 z-50 px-6 md:px-12 py-2.5">
@@ -314,6 +329,25 @@
         </div>
     </section>
 
+    <!-- ─── TICKER ─────────────────────────────────────────── -->
+    <div class="ticker-wrap bg-ink py-4 border-t border-zinc-800">
+        <div class="ticker-track">
+            <span class="text-xs tracking-[0.18em] uppercase text-zinc-400 px-10">$100K Minimum</span><span class="text-gold px-2">·</span>
+            <span class="text-xs tracking-[0.18em] uppercase text-zinc-400 px-10">Accredited Investors Only</span><span class="text-gold px-2">·</span>
+            <span class="text-xs tracking-[0.18em] uppercase text-zinc-400 px-10">SEC Reg D 506(c)</span><span class="text-gold px-2">·</span>
+            <span class="text-xs tracking-[0.18em] uppercase text-zinc-400 px-10">Spectre Equity Fund I</span><span class="text-gold px-2">·</span>
+            <span class="text-xs tracking-[0.18em] uppercase text-zinc-400 px-10">Energy Transition Infrastructure</span><span class="text-gold px-2">·</span>
+            <span class="text-xs tracking-[0.18em] uppercase text-zinc-400 px-10">LNG · Strategic Equity · Distributed Power</span><span class="text-gold px-2">·</span>
+            <!-- duplicate for seamless loop -->
+            <span class="text-xs tracking-[0.18em] uppercase text-zinc-400 px-10">$100K Minimum</span><span class="text-gold px-2">·</span>
+            <span class="text-xs tracking-[0.18em] uppercase text-zinc-400 px-10">Accredited Investors Only</span><span class="text-gold px-2">·</span>
+            <span class="text-xs tracking-[0.18em] uppercase text-zinc-400 px-10">SEC Reg D 506(c)</span><span class="text-gold px-2">·</span>
+            <span class="text-xs tracking-[0.18em] uppercase text-zinc-400 px-10">Spectre Equity Fund I</span><span class="text-gold px-2">·</span>
+            <span class="text-xs tracking-[0.18em] uppercase text-zinc-400 px-10">Energy Transition Infrastructure</span><span class="text-gold px-2">·</span>
+            <span class="text-xs tracking-[0.18em] uppercase text-zinc-400 px-10">LNG · Strategic Equity · Distributed Power</span><span class="text-gold px-2">·</span>
+        </div>
+    </div>
+
     <!-- ─── ABOUT ─────────────────────────────────────────── -->
     <section id="about" class="py-28 md:py-40 bg-cream">
         <div class="max-w-7xl mx-auto px-6 md:px-12">
@@ -451,6 +485,55 @@
             e.preventDefault();
             window.open('https://40t426.share-na2.hsforms.com/2ly1L36UdQSm6quKAxdI2Dg', '_blank');
         });
+
+        // ─── LINE-BY-LINE HEADING REVEALS ────────────────────
+        document.querySelectorAll('h1, h2').forEach(el => {
+            if (!el.innerHTML.includes('<br>')) return;
+            el.classList.remove('reveal');
+            const parts = el.innerHTML.split(/<br\s*\/?>/i);
+            el.innerHTML = parts.map((p, i) =>
+                `<span class="reveal-line" style="${i > 0 ? 'transition-delay:0.09s' : ''}">${p}</span>`
+            ).join('');
+            el.querySelectorAll('.reveal-line').forEach(s => observer.observe(s));
+        });
+
+        // ─── STAT COUNTERS ────────────────────────────────────
+        const statObs = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (!e.isIntersecting) return;
+                const el = e.target;
+                const target = +el.dataset.target, pre = el.dataset.pre, suf = el.dataset.suf;
+                const dur = 1400, t0 = performance.now();
+                const tick = t => {
+                    const p = Math.min(1, (t - t0) / dur);
+                    el.textContent = pre + Math.round((1 - Math.pow(1 - p, 3)) * target) + suf;
+                    if (p < 1) requestAnimationFrame(tick); else statObs.unobserve(el);
+                };
+                requestAnimationFrame(tick);
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('.stat-num').forEach(el => {
+            const text = el.textContent.trim();
+            if (text.includes('–')) return;
+            const m = text.match(/^([^0-9]*)(\d+)(.*)$/);
+            if (!m) return;
+            const [, pre, numStr, suf] = m;
+            el.dataset.pre = pre; el.dataset.suf = suf; el.dataset.target = +numStr;
+            el.textContent = pre + '0' + suf;
+            statObs.observe(el);
+        });
+
+        // ─── PILLAR PROGRESS BAR ──────────────────────────────
+        const pillarBar = document.getElementById('pillar-bar');
+        const pillarBarFill = document.getElementById('pillar-bar-fill');
+        window.addEventListener('scroll', () => {
+            const rect = pillarsSection.getBoundingClientRect();
+            const inView = rect.top <= 0 && rect.bottom >= window.innerHeight;
+            pillarBar.style.opacity = inView ? '1' : '0';
+            const progress = Math.max(0, Math.min(1, -rect.top / (pillarsSection.offsetHeight - window.innerHeight)));
+            pillarBarFill.style.transform = `scaleY(${progress})`;
+        }, { passive: true });
 
         // ─── PILLAR SCROLL SCRUBBERS (one per section) ───────
         (function () {

@@ -81,3 +81,36 @@ Installed via `npx skills add https://github.com/Leonxlnx/taste-skill`
 - IEP Folder: https://app.clickup.com/90141094754/v/f/90148497781/90144905010
 - Main List: https://app.clickup.com/90141094754/v/li/901415339918
 - Infra Setup List: https://app.clickup.com/90141094754/v/li/901415617794
+
+## Brand
+| Token | Value |
+|---|---|
+| Gold | `#B8924A` (hero eyebrow uses `#D4A855` — brighter override) |
+| Cream | `#FAFAF7` |
+| Ink | `#1C1A16` |
+| Heading | Playfair Display (serif) |
+| Body | Outfit (sans) |
+
+## Key IDs
+| Thing | Value |
+|---|---|
+| HubSpot form | `https://40t426.share-na2.hsforms.com/2ly1L36UdQSm6quKAxdI2Dg` |
+| Manus slide deck | `https://hgukjzfj.manus.space/` |
+| fal.ai viewer | `assets/gen/viewer.html` |
+| Domain | `spectreequity.com` (GitHub Pages) |
+
+## Asset Generation
+- **Script:** `node scripts/gen.js --prompt "…" --model nano-banana-pro --ratio 16:9 --res 1K --name my-img --tag "03 Charging & Data"`
+- **Always show full JSON payload and get user approval before firing any fal.ai generation**
+- Stills pipeline: `assets/gen/stills/` (WIP) → `assets/frames/` (final)
+- Always use 16:9 for VEO/Kling inputs (VEO crops square inputs)
+- Stills: fal.ai Nano Banana Pro, 16:9, 1K
+- Video: Google Flow/VEO manually (user has credits); Kling via fal.ai API
+
+## Design Decisions Locked
+- **Pillar layout:** Full-bleed canvas + cream gradient scrim + left text overlay
+- **Nav behavior:** Visible over hero only; disappears when `#pillars` hits viewport; no scroll-up reveal
+- **Exploded view bg:** Pure white blends into cream (`#FAFAF7`) — no compositing needed
+- **About section:** Derek Saunders only (no Nic)
+- **CLNE:** Never name the ticker publicly — frame as "sector leader in CNG/LNG fueling for long-haul commercial transport"
+- **Logos** (Rothschild, Lockheed, Siemens): hidden via `class="hidden"` — not deleted
