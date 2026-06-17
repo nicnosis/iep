@@ -2,8 +2,9 @@ node_modules/
 **/.DS_Store
 *.log
 config.js
+.env
 *.css.map
 
 # Video source files — keep only built outputs in git
-video/veo-out/
-video/final/
+assets/video/veo-out/
+assets/video/final/

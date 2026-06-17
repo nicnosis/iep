@@ -1,0 +1,1037 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>International Energy Partners — SPECTRE Fund</title>
+<template id="__bundler_thumbnail" data-bg-color="#0B1A2B">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#0B1A2B"/>
+    <g transform="translate(600 400)" fill="none" stroke="#B08A4A" stroke-width="3">
+      <rect x="-90" y="-90" width="180" height="180" transform="rotate(45)"/>
+      <rect x="-50" y="-50" width="100" height="100" transform="rotate(45)"/>
+    </g>
+    <text x="600" y="640" text-anchor="middle" fill="#F5F2EC" font-family="Georgia, serif" font-size="42" letter-spacing="6">IEP · SPECTRE</text>
+  </svg>
+</template>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<script>
+/* ============================================================
+   TWEAKS — editable via toolbar
+============================================================ */
+const TWEAKS = /*EDITMODE-BEGIN*/{
+  "theme": "stealth",
+  "accent": "#B08A4A",
+  "fontPair": "serif-sans",
+  "showImagery": false,
+  "fundName": "SPECTRE FUND",
+  "minInvestment": "$100,000"
+}/*EDITMODE-END*/;
+</script>
+<style>
+  :root{
+    --bg: #F5F2EC;
+    --paper: #FBF9F4;
+    --ink: #0B1A2B;
+    --ink-soft: #27384B;
+    --muted: #6B7688;
+    --rule: #D8D2C5;
+    --accent: #B08A4A;
+    --panel: #0B1A2B;
+    --panel-ink: #F5F2EC;
+    --panel-soft: #1A2B41;
+    --panel-muted: #8FA0B8;
+    --serif: "Spectral", "Fraunces", Georgia, serif;
+    --sans: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+
+  /* ── Theme: Navy / Charcoal (default) ─────────── */
+  [data-theme="navy"]{
+    --bg:#F5F2EC; --paper:#FBF9F4;
+    --ink:#0B1A2B; --ink-soft:#27384B; --muted:#6B7688;
+    --rule:#D8D2C5;
+    --panel:#0B1A2B; --panel-ink:#F5F2EC; --panel-soft:#1A2B41; --panel-muted:#8FA0B8;
+  }
+  /* ── Theme: Clean energy — deep green ───────── */
+  [data-theme="green"]{
+    --bg:#F2EFE8; --paper:#F8F5EE;
+    --ink:#0E2A22; --ink-soft:#1E3C33; --muted:#6A7A74;
+    --rule:#D4CFC0;
+    --panel:#0E2A22; --panel-ink:#F2EFE8; --panel-soft:#1A3A30; --panel-muted:#8DA39C;
+  }
+  /* ── Theme: Stealth — black + metallic ──────── */
+  [data-theme="stealth"]{
+    --bg:#0D0D0E; --paper:#131315;
+    --ink:#EDEAE2; --ink-soft:#C9C4B8; --muted:#7C7A72;
+    --rule:#2A2A2D;
+    --panel:#050506; --panel-ink:#EDEAE2; --panel-soft:#1A1A1D; --panel-muted:#8A8778;
+  }
+
+  /* ── Font pairings ─── */
+  [data-fontpair="serif-sans"]{ --display: var(--serif); --body: var(--sans); --display-tight:-0.01em; }
+  [data-fontpair="sans-sans"]{ --display: var(--sans); --body: var(--sans); --display-tight:-0.03em; }
+  [data-fontpair="serif-serif"]{ --display: var(--serif); --body: var(--serif); --display-tight:-0.01em; }
+
+  html, body { margin:0; padding:0; background:#000; color:var(--ink); font-family: var(--body); }
+  *{ box-sizing: border-box; }
+
+  deck-stage{ background:#000; }
+
+  /* ─────────── Slide shell ─────────── */
+  .slide{
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--body);
+    font-feature-settings: "ss01","cv11","liga";
+    position:relative;
+    overflow:hidden;
+  }
+  .slide.dark{ background: var(--panel); color: var(--panel-ink); }
+  .slide.paper{ background: var(--paper); }
+
+  .chrome{
+    position:absolute; inset:48px 64px auto 64px;
+    display:flex; justify-content:space-between; align-items:flex-start;
+    font-family: var(--mono);
+    font-size:13px; letter-spacing:0.08em; text-transform:uppercase;
+    color: var(--muted);
+  }
+  .slide.dark .chrome{ color: var(--panel-muted); }
+
+  .chrome .mark{ display:flex; align-items:center; gap:14px; color: var(--ink); }
+  .slide.dark .chrome .mark{ color: var(--panel-ink); }
+  .chrome .mark .glyph{
+    width:22px; height:22px; position:relative;
+    border: 1px solid currentColor;
+    transform: rotate(45deg);
+  }
+  .chrome .mark .glyph::after{
+    content:""; position:absolute; inset:4px; border:1px solid currentColor;
+  }
+  .chrome .mark .wordmark{
+    font-family: var(--display); font-style: normal;
+    font-weight:500; letter-spacing:0.22em; font-size:12px;
+  }
+  .chrome .meta{ text-align:right; line-height:1.6; }
+  .chrome .meta b{ color: var(--ink); font-weight:500; letter-spacing:0.14em; }
+  .slide.dark .chrome .meta b{ color: var(--panel-ink); }
+
+  .footer{
+    position:absolute; left:64px; right:64px; bottom:44px;
+    display:flex; justify-content:space-between; align-items:flex-end;
+    font-family: var(--mono); font-size:12px; letter-spacing:0.1em;
+    text-transform:uppercase; color: var(--muted);
+  }
+  .slide.dark .footer{ color: var(--panel-muted); }
+  .footer .folio{ color: var(--ink); }
+  .slide.dark .footer .folio{ color: var(--panel-ink); }
+
+  /* hairline rule */
+  .rule{ height:1px; background: var(--rule); width:100%; }
+  .slide.dark .rule{ background: rgba(255,255,255,0.14); }
+
+  /* ─────────── Typographic helpers ─────────── */
+  .eyebrow{
+    font-family: var(--mono); font-size:13px; letter-spacing:0.22em;
+    text-transform:uppercase; color: var(--accent);
+  }
+  .display{
+    font-family: var(--display);
+    font-weight:400;
+    letter-spacing: var(--display-tight, -0.01em);
+    line-height:1.02;
+    color: var(--ink);
+    text-wrap: balance;
+  }
+  .slide.dark .display{ color: var(--panel-ink); }
+  .display em{ font-style: italic; color: var(--accent); font-weight:400; }
+  .lead{ font-family: var(--body); font-size:22px; line-height:1.5; color: var(--ink-soft); max-width:58ch; text-wrap: pretty; }
+  .slide.dark .lead{ color: var(--panel-muted); }
+  .body{ font-size:17px; line-height:1.6; color: var(--ink-soft); }
+  .slide.dark .body{ color: var(--panel-muted); }
+  .tag{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family: var(--mono); font-size:11px; letter-spacing:0.2em;
+    text-transform:uppercase; color: var(--muted);
+  }
+  .tag::before{ content:""; width:6px; height:6px; background: var(--accent); border-radius: 1px; }
+
+  /* ─────────── Slide 01 — Cover ─────────── */
+  .cover{
+    display:grid;
+    grid-template-rows: auto 1fr auto;
+    padding: 120px 96px 96px;
+    height:100%;
+  }
+  .cover .wm{
+    font-family: var(--display); font-style:italic;
+    font-size:280px; line-height:0.85;
+    color: var(--accent); opacity:0.10;
+    position:absolute; right:60px; bottom:120px;
+    pointer-events:none; letter-spacing:-0.04em;
+    user-select:none;
+  }
+  .cover .title{
+    font-family: var(--display);
+    font-size:180px; line-height:0.92;
+    letter-spacing: -0.02em; font-weight:400;
+    color: var(--ink);
+  }
+  .cover .title em{ font-style: italic; color: var(--accent); }
+  .cover .sub{
+    margin-top:36px; display:flex; gap:48px; align-items:baseline;
+    font-family: var(--body); font-size:19px; color: var(--ink-soft);
+    max-width: 70ch; line-height:1.5;
+  }
+  .cover .coverFooter{
+    display:grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap:24px;
+    padding-top: 28px; border-top: 1px solid var(--rule);
+    font-family: var(--mono); font-size:12px; letter-spacing:0.14em;
+    text-transform:uppercase; color: var(--muted);
+  }
+  .cover .coverFooter b{ display:block; color: var(--ink); font-weight:500; margin-top:6px; font-family: var(--body); letter-spacing:0.04em; text-transform:none; font-size:15px; }
+
+  /* ─────────── Slide 02 — Thesis ─────────── */
+  .thesis{
+    display:grid; grid-template-columns: 1.1fr 1fr; gap: 96px;
+    padding: 150px 96px 140px;
+    height:100%; align-items:center;
+  }
+  .thesis h2{ font-size:104px; margin:0; }
+  .thesis .aside{
+    border-left: 1px solid var(--rule); padding-left: 48px;
+    display:flex; flex-direction:column; gap:28px;
+  }
+  .stat{
+    display:flex; flex-direction:column; gap:4px;
+  }
+  .stat .k{ font-family: var(--mono); font-size:11px; letter-spacing:0.22em; text-transform:uppercase; color: var(--muted); }
+  .stat .v{ font-family: var(--display); font-size:56px; line-height:1; color: var(--ink); letter-spacing:-0.02em; }
+  .stat .n{ font-size:14px; color: var(--ink-soft); max-width: 34ch; line-height:1.5; }
+
+  /* ─────────── Slide 03 — Three pillars ─────────── */
+  .pillars{
+    padding: 150px 64px 110px;
+    height:100%;
+    display:grid; grid-template-rows: auto 1fr;
+  }
+  .pillarsHead{
+    display:grid; grid-template-columns: 1.4fr 1fr; gap:64px;
+    align-items:end; padding-bottom:40px; border-bottom: 1px solid var(--rule);
+  }
+  .pillarsHead h2{ font-family: var(--display); font-size:80px; margin:0; line-height:1; letter-spacing:-0.015em; }
+  .pillarsHead p{ font-size:17px; color: var(--ink-soft); line-height:1.55; max-width: 42ch; }
+  .pillarGrid{
+    display:grid; grid-template-columns: repeat(3, 1fr); gap:0;
+    margin-top: 40px;
+  }
+  .pillar{
+    padding: 40px 40px 32px;
+    border-right: 1px solid var(--rule);
+    display:flex; flex-direction:column; gap:24px;
+    min-height: 560px;
+  }
+  .pillar:last-child{ border-right:none; }
+  .pillar .num{ font-family: var(--mono); font-size:12px; letter-spacing:0.22em; color: var(--accent); }
+  .pillar h3{ font-family: var(--display); font-size:38px; margin:0; line-height:1.05; letter-spacing:-0.01em; font-weight:400; }
+  .pillar p{ font-size:15px; line-height:1.6; color: var(--ink-soft); margin:0; }
+  .pillar ul{ list-style:none; padding:0; margin:0; border-top:1px solid var(--rule); }
+  .pillar li{
+    padding: 12px 0; border-bottom:1px solid var(--rule);
+    font-family: var(--mono); font-size:12px; letter-spacing:0.1em;
+    text-transform:uppercase; color: var(--ink);
+    display:flex; justify-content:space-between; align-items:center;
+  }
+  .pillar li::after{ content:"→"; color: var(--accent); font-family: var(--body); }
+
+  .imgph{
+    background:
+      repeating-linear-gradient(135deg, var(--rule) 0 1px, transparent 1px 14px),
+      var(--paper);
+    border:1px solid var(--rule);
+    display:flex; align-items:center; justify-content:center;
+    font-family: var(--mono); font-size:11px; letter-spacing:0.14em;
+    color: var(--muted); text-transform:uppercase;
+    aspect-ratio: 16/9; width:100%;
+  }
+  .imgph.tall{ aspect-ratio: 4/5; }
+  body[data-imagery="0"] .imgph{ display:none; }
+
+  /* ─────────── Slide 04 — Stealth thesis ─────────── */
+  .stealth{
+    padding: 140px 96px 110px;
+    height:100%;
+    display:grid; grid-template-columns: 1.15fr 1fr; gap:96px; align-items:stretch;
+  }
+  .stealth .lead-col h2{ font-family: var(--display); font-size:96px; margin:0; line-height:0.98; letter-spacing:-0.02em; font-weight:400; }
+  .stealth .lead-col h2 em{ color: var(--accent); }
+  .stealth .lead-col .body{ margin-top: 32px; max-width: 42ch; }
+  .stealth .lead-col .quote{
+    margin-top: 44px; padding-top:28px; border-top: 1px solid rgba(255,255,255,0.15);
+    font-family: var(--display); font-style:italic; font-size:22px; line-height:1.45;
+    color: var(--panel-ink); max-width: 48ch;
+  }
+  .stealth .lead-col .quote cite{ display:block; margin-top:14px; font-style:normal; font-family: var(--mono); font-size:11px; letter-spacing:0.2em; color: var(--panel-muted); }
+  .stealth .data-col{
+    display:flex; flex-direction:column; gap:0;
+    border-top:1px solid rgba(255,255,255,0.14);
+  }
+  .stealth .row{
+    display:grid; grid-template-columns: 110px 1fr auto; gap:28px;
+    padding: 22px 0; border-bottom: 1px solid rgba(255,255,255,0.14);
+    align-items:baseline;
+  }
+  .stealth .row .step{ font-family: var(--mono); font-size:12px; letter-spacing:0.22em; color: var(--accent); }
+  .stealth .row .what{ font-family: var(--display); font-size:26px; line-height:1.2; color: var(--panel-ink); letter-spacing:-0.01em; }
+  .stealth .row .desc{ grid-column: 2; font-size:14px; color: var(--panel-muted); line-height:1.5; max-width:44ch; }
+  .stealth .row .target{ font-family: var(--mono); font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color: var(--panel-muted); }
+
+  /* ─────────── Slide 05 — LNG arbitrage ─────────── */
+  .arb{
+    padding: 140px 96px 110px; height:100%;
+    display:grid; grid-template-rows: auto 1fr auto; gap:40px;
+  }
+  .arb h2{ font-family: var(--display); font-size:88px; margin:0; line-height:1; letter-spacing:-0.02em; font-weight:400; max-width: 18ch; }
+  .arb .diagram{
+    display:grid; grid-template-columns: 1fr 2fr 1fr; gap:0;
+    border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+    padding: 48px 0;
+    align-items:center;
+    position:relative;
+  }
+  .port{
+    display:flex; flex-direction:column; gap:16px;
+    padding: 0 36px;
+  }
+  .port .loc{ font-family: var(--mono); font-size:12px; letter-spacing:0.22em; color: var(--muted); text-transform:uppercase; }
+  .port .name{ font-family: var(--display); font-size:44px; line-height:1.05; letter-spacing:-0.01em; color: var(--ink); }
+  .port .price{ font-family: var(--mono); font-size:14px; color: var(--ink-soft); letter-spacing:0.04em; }
+  .port .price b{ color: var(--accent); font-weight:500; }
+
+  .flow{
+    position:relative; height: 220px;
+    border-left: 1px solid var(--rule); border-right: 1px solid var(--rule);
+    display:flex; align-items:center; justify-content:center; flex-direction:column; gap:16px;
+  }
+  .flow .line{
+    position:absolute; left:40px; right:40px; top:50%;
+    height:1px; background: var(--ink);
+  }
+  .flow .line::before, .flow .line::after{
+    content:""; position:absolute; top:-3px; width:7px; height:7px;
+    background: var(--accent); border-radius:50%;
+  }
+  .flow .line::before{ left:0; }
+  .flow .line::after{ right:0; }
+  .flow .lab{
+    position:relative; background: var(--bg); z-index:1;
+    padding: 4px 14px; font-family: var(--mono); font-size:11px; letter-spacing:0.22em;
+    text-transform:uppercase; color: var(--accent);
+  }
+  .flow .note{
+    position:relative; background: var(--bg); z-index:1; padding: 2px 12px;
+    font-family: var(--body); font-size:13px; color: var(--ink-soft); text-align:center; max-width: 32ch; line-height:1.45;
+  }
+  .arb .foot{
+    display:grid; grid-template-columns: repeat(3, 1fr); gap: 32px;
+    border-top:1px solid var(--rule); padding-top: 28px;
+  }
+  .arb .foot .k{ font-family: var(--mono); font-size:11px; letter-spacing:0.22em; text-transform:uppercase; color: var(--muted); }
+  .arb .foot .v{ font-family: var(--display); font-size:40px; line-height:1; color: var(--ink); margin-top:8px; letter-spacing:-0.01em; }
+  .arb .foot .n{ font-size:14px; color: var(--ink-soft); margin-top:8px; line-height:1.5; }
+
+  /* ─────────── Slide 06 — Data centers ─────────── */
+  .dc{
+    padding: 140px 96px 110px; height:100%;
+    display:grid; grid-template-columns: 1fr 1.2fr; gap:96px;
+  }
+  .dc h2{ font-family: var(--display); font-size:88px; margin:0; line-height:0.98; letter-spacing:-0.02em; font-weight:400; }
+  .dc h2 em{ color: var(--accent); }
+  .dc .lede{ margin-top:28px; max-width:42ch; color: var(--ink-soft); font-size:17px; line-height:1.6; }
+  .dc .system{
+    border-left: 1px solid var(--rule); padding-left: 48px;
+    display:flex; flex-direction:column; gap:0;
+  }
+  .dc .sysrow{
+    display:grid; grid-template-columns: 40px 1fr; gap:24px;
+    padding: 24px 0; border-bottom:1px solid var(--rule); align-items:baseline;
+  }
+  .dc .sysrow:first-child{ border-top:1px solid var(--rule); }
+  .dc .sysrow .n{ font-family: var(--mono); font-size:12px; letter-spacing:0.14em; color: var(--accent); }
+  .dc .sysrow h4{ font-family: var(--display); font-size:28px; margin:0 0 6px; letter-spacing:-0.01em; font-weight:400; }
+  .dc .sysrow p{ margin:0; font-size:14px; color: var(--ink-soft); line-height:1.55; max-width: 44ch; }
+  .dc .fuels{
+    display:flex; gap:10px; margin-top: 14px; flex-wrap:wrap;
+  }
+  .chip{
+    font-family: var(--mono); font-size:11px; letter-spacing:0.18em; text-transform:uppercase;
+    padding: 6px 10px; border:1px solid var(--rule); color: var(--ink);
+  }
+  .chip.on{ background: var(--ink); color: var(--bg); border-color: var(--ink); }
+
+  /* ─────────── Slide 07 — Risks ─────────── */
+  .risks{
+    padding: 140px 96px 110px; height:100%;
+    display:grid; grid-template-rows: auto 1fr;
+  }
+  .risks .head{
+    display:grid; grid-template-columns: 1.3fr 1fr; gap:64px; align-items:end;
+    padding-bottom: 36px; border-bottom:1px solid var(--rule);
+  }
+  .risks h2{ font-family: var(--display); font-size:80px; margin:0; letter-spacing:-0.02em; font-weight:400; line-height:1; }
+  .risks .head p{ font-size:16px; color: var(--ink-soft); line-height:1.55; max-width:44ch; }
+  .risksTable{
+    margin-top: 32px;
+    display:grid; grid-template-columns: 1fr 1.3fr 1.3fr;
+    font-size:14px;
+  }
+  .risksTable .h, .risksTable .cell{
+    padding: 18px 24px 18px 0;
+    border-bottom: 1px solid var(--rule);
+    line-height:1.55;
+    color: var(--ink-soft);
+  }
+  .risksTable .h{
+    font-family: var(--mono); font-size:11px; letter-spacing:0.22em;
+    text-transform:uppercase; color: var(--muted);
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 12px;
+  }
+  .risksTable .cell.risk{
+    font-family: var(--display); font-size:22px; color: var(--ink); letter-spacing:-0.01em;
+  }
+  .risksTable .cell.mit::before{
+    content:"Mitigant"; display:block; font-family: var(--mono); font-size:10px; letter-spacing:0.22em;
+    text-transform:uppercase; color: var(--accent); margin-bottom:6px;
+  }
+  .risksTable .cell.what::before{
+    content:"Exposure"; display:block; font-family: var(--mono); font-size:10px; letter-spacing:0.22em;
+    text-transform:uppercase; color: var(--muted); margin-bottom:6px;
+  }
+
+  /* ─────────── Slide 08 — Participate ─────────── */
+  .part{
+    padding: 120px 96px 140px; height:100%;
+    display:grid; grid-template-columns: 1.1fr 1fr; gap: 96px;
+    background: var(--panel); color: var(--panel-ink);
+  }
+  .part h2{ font-family: var(--display); font-size:104px; margin:0; line-height:0.94; letter-spacing:-0.02em; font-weight:400; color: var(--panel-ink); }
+  .part h2 em{ color: var(--accent); font-style: italic; }
+  .part .subtitle{ margin-top:22px; color: var(--panel-muted); font-size:18px; line-height:1.5; max-width: 44ch; }
+  .part .terms{
+    border-top:1px solid rgba(255,255,255,0.18);
+    margin-top: 28px; padding-top: 20px;
+    display:grid; grid-template-columns: 1fr 1fr; gap: 20px 40px;
+  }
+  .part .terms .k{ font-family: var(--mono); font-size:11px; letter-spacing:0.22em; color: var(--panel-muted); text-transform:uppercase; }
+  .part .terms .v{ font-family: var(--display); font-size:26px; color: var(--panel-ink); margin-top:4px; letter-spacing:-0.01em; }
+  .part .terms .n{ font-size:12.5px; color: var(--panel-muted); margin-top:3px; line-height:1.45; }
+
+  .contact{
+    display:flex; flex-direction:column; justify-content:space-between;
+    border-left:1px solid rgba(255,255,255,0.18); padding-left: 48px;
+  }
+  .contact .label{ font-family: var(--mono); font-size:11px; letter-spacing:0.22em; text-transform:uppercase; color: var(--panel-muted); }
+  .contact .who{ font-family: var(--display); font-size:48px; line-height:1.05; color: var(--panel-ink); margin-top:8px; letter-spacing:-0.01em; }
+  .contact .role{ font-size:15px; color: var(--panel-muted); margin-top:6px; }
+  .contact .addr{ margin-top:36px; font-size:16px; line-height:1.7; color: var(--panel-ink); }
+  .contact .phone{ margin-top:12px; font-family: var(--mono); font-size:15px; letter-spacing:0.08em; color: var(--accent); }
+  .contact .disclaim{
+    margin-top: 32px; padding-top: 20px; border-top:1px solid rgba(255,255,255,0.14);
+    font-size:10.5px; line-height:1.6; color: var(--panel-muted);
+    max-width: 48ch; letter-spacing:0.01em;
+  }
+
+  /* ─── big serif initial ── */
+  .drop{ font-family: var(--display); font-style:italic; color: var(--accent); font-size:1.2em; padding-right:0.05em; }
+
+  /* ─────────── Tweaks panel ─────────── */
+  #tweaks{
+    position: fixed; right: 18px; bottom: 18px; z-index: 2147483600;
+    width: 300px;
+    background: rgba(18,18,22,0.96);
+    color:#EAE7DF;
+    border:1px solid rgba(255,255,255,0.12);
+    border-radius: 10px;
+    padding: 14px;
+    font-family: var(--sans);
+    font-size: 12px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+    display:none;
+    backdrop-filter: blur(10px);
+  }
+  #tweaks.open{ display:block; }
+  #tweaks h4{ margin:0 0 12px; font-size:11px; letter-spacing:0.22em; text-transform:uppercase; color:#C3B884; font-weight:500; }
+  #tweaks .row{ display:flex; flex-direction:column; gap:6px; margin-bottom:14px; }
+  #tweaks label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A59E; }
+  #tweaks .seg{ display:grid; grid-template-columns: 1fr 1fr 1fr; gap:4px; background:rgba(255,255,255,0.04); padding:3px; border-radius:6px; }
+  #tweaks .seg.two{ grid-template-columns: 1fr 1fr; }
+  #tweaks .seg button{
+    all:unset; cursor:pointer; text-align:center; padding:6px 4px;
+    font-size:11px; letter-spacing:0.08em; color:#C9C6BE; border-radius:4px;
+    text-transform:uppercase;
+  }
+  #tweaks .seg button[aria-pressed="true"]{ background:#C3B884; color:#121214; }
+  #tweaks input[type="text"], #tweaks input[type="color"]{
+    background: rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1);
+    color:#EAE7DF; border-radius:6px; padding:8px 10px; font:inherit;
+    font-family: var(--mono); font-size:12px;
+  }
+  #tweaks input[type="color"]{ padding:3px; height:32px; width:100%; }
+  #tweaks .swatches{ display:flex; gap:6px; flex-wrap:wrap; }
+  #tweaks .sw{ width:22px; height:22px; border-radius:4px; border:1px solid rgba(255,255,255,0.15); cursor:pointer; }
+  #tweaks .sw[aria-pressed="true"]{ outline:2px solid #fff; outline-offset:1px; }
+
+</style>
+</head>
+<body data-theme="navy" data-fontpair="serif-sans" data-imagery="0">
+
+<script type="application/json" id="speaker-notes">[]</script>
+
+<deck-stage width="1920" height="1080">
+
+  <!-- ============== 01 — Cover ============== -->
+  <section class="slide" data-label="Cover">
+    <div class="chrome">
+      <div class="mark">
+        <div class="glyph"></div>
+        <div>
+          <div class="wordmark">INTERNATIONAL ENERGY PARTNERS</div>
+        </div>
+      </div>
+      <div class="meta">
+        CONFIDENTIAL<br/>
+        <b>PRIVATE PLACEMENT MEMO</b><br/>
+        For Accredited Investors Only
+      </div>
+    </div>
+
+    <div class="cover">
+      <div class="eyebrow" style="align-self:start">Vol. I · Fund Prospectus · FY 2026</div>
+      <div style="align-self:center">
+        <div style="font-family:var(--display); font-style:italic; font-size:34px; color:var(--ink-soft); margin-bottom:16px;">Introducing the</div>
+        <h1 class="title" id="coverTitle">SPECTRE<br/><em>Fund.</em></h1>
+        <div class="sub">
+          A private-capital vehicle investing across Liquefied Natural Gas, clean-energy equity, and the charging and data-center infrastructure that will power the next American energy decade.
+        </div>
+      </div>
+      <div class="coverFooter">
+        <div>Issuer<b>International Energy Partners</b></div>
+        <div>Headquarters<b>Fort Lauderdale, FL</b></div>
+        <div>Minimum<b id="coverMin">$100,000</b></div>
+        <div>Prepared<b>Spring 2026</b></div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <span>IEP · Private &amp; Confidential</span>
+      <span class="folio">01 / 08</span>
+    </div>
+  </section>
+
+  <!-- ============== 02 — Thesis ============== -->
+  <section class="slide paper" data-label="Thesis">
+    <div class="chrome">
+      <div class="mark"><div class="glyph"></div><div class="wordmark">IEP · SPECTRE</div></div>
+      <div class="meta">SECTION I<br/><b>INVESTMENT THESIS</b></div>
+    </div>
+
+    <div class="thesis">
+      <div>
+        <div class="eyebrow">The Thesis</div>
+        <h2 class="display" style="margin:24px 0 0; font-size:92px;">
+          Natural gas is the <em>bridge fuel</em> of the American energy decade —<br/>
+          and its price is not yet telling the truth.
+        </h2>
+        <p class="lead" style="margin-top:32px; font-size:20px;">
+          <span class="drop">U</span>S reserves are the largest in the world, domestic prices sit near historic lows relative to crude, and the spread to European delivery is structurally wide. We buy that mispricing three ways.
+        </p>
+      </div>
+      <div class="aside">
+        <div class="stat">
+          <div class="k">US Share of Global Gas Reserves</div>
+          <div class="v">#1</div>
+          <div class="n">Largest proved reserves of any single nation; abundant, domestic, and increasingly exportable.</div>
+        </div>
+        <div class="stat">
+          <div class="k">US → EU Price Spread</div>
+          <div class="v">~3–5×</div>
+          <div class="n">Henry Hub vs. TTF/JKM delivered equivalent — a persistent arbitrage window.</div>
+        </div>
+        <div class="stat">
+          <div class="k">Buffett Filter</div>
+          <div class="v">“Simple.”</div>
+          <div class="n">If we cannot explain a position in one sentence, we do not take it.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer"><span>Investment Thesis</span><span class="folio">02 / 08</span></div>
+  </section>
+
+  <!-- ============== 03 — Three Pillars ============== -->
+  <section class="slide" data-label="Three Pillars">
+    <div class="chrome">
+      <div class="mark"><div class="glyph"></div><div class="wordmark">IEP · SPECTRE</div></div>
+      <div class="meta">SECTION II<br/><b>STRATEGY PILLARS</b></div>
+    </div>
+
+    <div class="pillars">
+      <div class="pillarsHead">
+        <h2 class="display">Three pillars.<br/>One <em>capital structure.</em></h2>
+        <p>Each transaction within the fund is ring-fenced. Investors may opt into the blended portfolio or participate transaction-by-transaction.</p>
+      </div>
+
+      <div class="pillarGrid">
+        <div class="pillar">
+          <div class="num">PILLAR 01</div>
+          <h3>Liquefied<br/>Natural Gas</h3>
+          <p>Direct LNG cargo arbitrage and stakes in midstream infrastructure that moves molecules from the Gulf Coast to Europe and Asia.</p>
+          <div class="imgph" aria-hidden="true">[ LNG TERMINAL · EDITORIAL ]</div>
+          <ul>
+            <li>Infrastructure Development</li>
+            <li>Technology Innovation</li>
+            <li>Global Supply Chain</li>
+          </ul>
+        </div>
+        <div class="pillar">
+          <div class="num">PILLAR 02</div>
+          <h3>Strategic<br/>Equity Positions</h3>
+          <p>Sub-5% positions in public clean-energy operators where share price has decoupled from long-term commodity fundamentals.</p>
+          <div class="imgph" aria-hidden="true">[ CNG FLEET · EDITORIAL ]</div>
+          <ul>
+            <li>Growth Capital</li>
+            <li>Strategic Partnerships</li>
+            <li>Market Expansion</li>
+          </ul>
+        </div>
+        <div class="pillar">
+          <div class="num">PILLAR 03</div>
+          <h3>Charging &amp;<br/>Data-Center Power</h3>
+          <p>On-site gas-to-power for fast-charging corridors and municipal data centers — a private grid built around reliability rather than the aging public one.</p>
+          <div class="imgph" aria-hidden="true">[ HYPERSCALE SITE · EDITORIAL ]</div>
+          <ul>
+            <li>Fast Charging Networks</li>
+            <li>Smart-Grid Integration</li>
+            <li>Urban &amp; Highway Coverage</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer"><span>Strategy Pillars</span><span class="folio">03 / 08</span></div>
+  </section>
+
+  <!-- ============== 04 — Stealth Thesis ============== -->
+  <section class="slide dark" data-label="Stealth Thesis">
+    <div class="chrome">
+      <div class="mark"><div class="glyph"></div><div class="wordmark">IEP · SPECTRE</div></div>
+      <div class="meta" style="color:var(--panel-muted)">SECTION III<br/><b style="color:var(--panel-ink)">PREMIERE TRANSACTION</b></div>
+    </div>
+
+    <div class="stealth">
+      <div class="lead-col">
+        <div class="eyebrow">The Premiere Transaction</div>
+        <h2 style="margin-top:24px;" class="display">A quiet position in the <em>#1 refueler</em> of CNG &amp; LNG for long-haul trucking.</h2>
+        <p class="body" style="margin-top:28px; color:var(--panel-muted);">
+          The target's equity sits near multi-year lows alongside depressed domestic gas pricing — a structural mispricing we believe closes as industrial demand, exports, and on-site power generation expand. Our approach is staged and disciplined.
+        </p>
+        <div class="quote">
+          “If we cannot understand it or explain it in simple terms, we will not buy it or invest in it.”
+          <cite>— IEP Investment Charter</cite>
+        </div>
+      </div>
+
+      <div class="data-col">
+        <div class="row">
+          <div class="step">PHASE 01</div>
+          <div class="what">Stealth accumulation, &lt;5% position</div>
+          <div class="target">Open Market</div>
+          <div class="desc">Below 13D disclosure threshold; avoid signaling to the market while the basis is constructive.</div>
+        </div>
+        <div class="row">
+          <div class="step">PHASE 02</div>
+          <div class="what">Engage management; build coalition</div>
+          <div class="target">Private</div>
+          <div class="desc">Constructive dialogue on capital allocation, cost of capital, and the asset's strategic option value.</div>
+        </div>
+        <div class="row">
+          <div class="step">PHASE 03</div>
+          <div class="what">Hostile bid if value gap persists</div>
+          <div class="target">Board / Shareholders</div>
+          <div class="desc">Targeting a re-rating of ≥3× on the realised basis, in line with peer-group historical multiples.</div>
+        </div>
+        <div class="row">
+          <div class="step">PHASE 04</div>
+          <div class="what">Integrate refueling into IEP power &amp; data strategy</div>
+          <div class="target">Operational</div>
+          <div class="desc">Convert refueling footprint into a platform for on-site data-center power and EV corridors.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer" style="color:var(--panel-muted)"><span>Premiere Transaction</span><span class="folio" style="color:var(--panel-ink)">04 / 08</span></div>
+  </section>
+
+  <!-- ============== 05 — LNG arbitrage ============== -->
+  <section class="slide" data-label="LNG Arbitrage">
+    <div class="chrome">
+      <div class="mark"><div class="glyph"></div><div class="wordmark">IEP · SPECTRE</div></div>
+      <div class="meta">SECTION IV<br/><b>LNG ARBITRAGE</b></div>
+    </div>
+
+    <div class="arb">
+      <div>
+        <div class="eyebrow">Parallel Transaction</div>
+        <h2 class="display" style="margin-top:18px;">Contract one cargo stateside.<br/>Deliver it to <em>Europe</em>.</h2>
+      </div>
+
+      <div class="diagram">
+        <div class="port">
+          <div class="loc">Origin — East Coast US</div>
+          <div class="name">Henry Hub<br/>Basis</div>
+          <div class="price">Low domestic index · <b>abundant supply</b></div>
+        </div>
+        <div class="flow">
+          <div class="line"></div>
+          <div class="lab">Cargo Contract</div>
+          <div class="note">IEP takes <b>ownership, not possession.</b> Transfer is paper; molecules move under the counterparty's operational control.</div>
+        </div>
+        <div class="port" style="text-align:right">
+          <div class="loc">Delivery — EU Member</div>
+          <div class="name">TTF / JKM<br/>Delivered</div>
+          <div class="price"><b>Structural premium</b> · geopolitical tension</div>
+        </div>
+      </div>
+
+      <div class="foot">
+        <div>
+          <div class="k">Capital at Risk</div>
+          <div class="v">Contracted</div>
+          <div class="n">Exposure capped at the paper contract; no storage, shipping, or regas obligations assumed by the fund.</div>
+        </div>
+        <div>
+          <div class="k">Hold Period</div>
+          <div class="v">Short-cycle</div>
+          <div class="n">Transactions close at delivery; proceeds distributed per the engagement letter with each client.</div>
+        </div>
+        <div>
+          <div class="k">Hedge Posture</div>
+          <div class="v">Pre-matched</div>
+          <div class="n">We write the sell-side contract before we commit the buy-side — arbitrage, not speculation.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer"><span>LNG Arbitrage</span><span class="folio">05 / 08</span></div>
+  </section>
+
+  <!-- ============== 06 — Data centers ============== -->
+  <section class="slide paper" data-label="Data Centers">
+    <div class="chrome">
+      <div class="mark"><div class="glyph"></div><div class="wordmark">IEP · SPECTRE</div></div>
+      <div class="meta">SECTION V<br/><b>PROPRIETARY POWER</b></div>
+    </div>
+
+    <div class="dc">
+      <div>
+        <div class="eyebrow">Municipal Data Centers</div>
+        <h2 class="display" style="margin-top:18px;">What do we do with surplus US gas?<br/><em>Power the grid we actually need.</em></h2>
+        <p class="lede">
+          IEP is in discussions with municipalities to develop proprietary, fuel-agnostic data centers — sized for local demand, owned under local governance, and paid for through long-duration offtake.
+        </p>
+
+        <div class="fuels">
+          <div class="chip on">CNG</div>
+          <div class="chip on">LNG</div>
+          <div class="chip">Grid Tie-In</div>
+          <div class="chip">On-site H₂ (electrolysis)</div>
+        </div>
+
+        <p class="body" style="margin-top:28px;">
+          Local and state governments set the rules, regulations and privacy posture; IEP supplies capital, fuel logistics, and operating discipline. Cost-effective, contained, and kept <em style="font-style:italic; font-family:var(--display);">right in their own backyards</em>.
+        </p>
+      </div>
+
+      <div class="system">
+        <div class="sysrow">
+          <div class="n">01</div>
+          <div>
+            <h4>Fuel-agnostic, fuel-independent</h4>
+            <p>Sites run primarily on CNG or LNG today, with an upgrade path to on-site hydrogen via water electrolysis as economics permit.</p>
+          </div>
+        </div>
+        <div class="sysrow">
+          <div class="n">02</div>
+          <div>
+            <h4>Municipal governance</h4>
+            <p>Each deployment enters a long-term offtake and oversight agreement with the host municipality — no externalised risk to constituents.</p>
+          </div>
+        </div>
+        <div class="sysrow">
+          <div class="n">03</div>
+          <div>
+            <h4>Private, parallel grid</h4>
+            <p>Purpose-built power for AI, enterprise, and civic compute — bypassing the transmission bottlenecks that constrain the public grid.</p>
+          </div>
+        </div>
+        <div class="sysrow">
+          <div class="n">04</div>
+          <div>
+            <h4>Corridor-linked charging</h4>
+            <p>Shared power infrastructure anchors adjacent fast-charging networks for highway and fleet customers.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer"><span>Proprietary Power</span><span class="folio">06 / 08</span></div>
+  </section>
+
+  <!-- ============== 07 — Risk & Mitigants ============== -->
+  <section class="slide" data-label="Risks">
+    <div class="chrome">
+      <div class="mark"><div class="glyph"></div><div class="wordmark">IEP · SPECTRE</div></div>
+      <div class="meta">SECTION VI<br/><b>RISK &amp; MITIGANTS</b></div>
+    </div>
+
+    <div class="risks">
+      <div class="head">
+        <h2 class="display">We do not sell <em>certainty.</em><br/>We sell a framework for it.</h2>
+        <p>Every strategy within SPECTRE carries material risk. We publish our exposures alongside the mitigants that make them investable — and invite diligence on both.</p>
+      </div>
+
+      <div class="risksTable">
+        <div class="h">Risk</div>
+        <div class="h">What It Looks Like</div>
+        <div class="h">How We Mitigate</div>
+
+        <div class="cell risk">Commodity price dislocation</div>
+        <div class="cell what">Henry Hub or delivered spreads compress before a cargo is positioned.</div>
+        <div class="cell mit">Sell-side contracts written <em>before</em> the buy-side is committed; ownership, not possession.</div>
+
+        <div class="cell risk">Activist position fails to close discount</div>
+        <div class="cell what">Target board rejects engagement; equity re-rating does not materialise.</div>
+        <div class="cell mit">Position capped sub-5%; thesis underwritten on standalone fundamentals, not take-out optionality.</div>
+
+        <div class="cell risk">Regulatory &amp; geopolitical</div>
+        <div class="cell what">Export licensing, sanctions, or EU reception policy changes shift the arbitrage window.</div>
+        <div class="cell mit">Short-cycle transactions; counterparty concentration limits; legal review per cargo.</div>
+
+        <div class="cell risk">Municipal data-center execution</div>
+        <div class="cell what">Permitting, offtake, and interconnect timelines slip.</div>
+        <div class="cell mit">Capital committed only at contracted milestones; site economics self-funded post-signing.</div>
+
+        <div class="cell risk">Liquidity &amp; lock-up</div>
+        <div class="cell what">Transaction-level vehicles are not daily-liquid.</div>
+        <div class="cell mit">Investors opt in per transaction with defined distribution at conclusion; nothing is commingled without written consent.</div>
+      </div>
+    </div>
+
+    <div class="footer"><span>Risk &amp; Mitigants</span><span class="folio">07 / 08</span></div>
+  </section>
+
+  <!-- ============== 08 — Participate / Contact ============== -->
+  <section class="slide dark" data-label="Participate">
+    <div class="chrome">
+      <div class="mark"><div class="glyph"></div><div class="wordmark">IEP · SPECTRE</div></div>
+      <div class="meta" style="color:var(--panel-muted)">SECTION VII<br/><b style="color:var(--panel-ink)">PARTICIPATE</b></div>
+    </div>
+
+    <div class="part">
+      <div>
+        <div class="eyebrow">How to Participate</div>
+        <h2 style="margin-top:18px;">Participate at the<br/><em>transaction level</em><br/>or the fund level.</h2>
+        <p class="subtitle">Each allocation is governed by an engagement letter signed by IEP and the client. Distributions occur at the conclusion of each transaction or on the schedule agreed in writing — never by ambiguity.</p>
+
+        <div class="terms">
+          <div>
+            <div class="k">Minimum Commitment</div>
+            <div class="v" id="termMin">$100,000</div>
+            <div class="n">Per-transaction or blended, at the investor's election.</div>
+          </div>
+          <div>
+            <div class="k">Eligibility</div>
+            <div class="v">Accredited</div>
+            <div class="n">SEC Reg D 506(c) verification required prior to subscription.</div>
+          </div>
+          <div>
+            <div class="k">Distribution</div>
+            <div class="v">At Close</div>
+            <div class="n">Proceeds returned at transaction close, unless otherwise agreed in writing.</div>
+          </div>
+          <div>
+            <div class="k">Reporting</div>
+            <div class="v">Transparent</div>
+            <div class="n">Position, basis, and mark-to-market delivered per cycle.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact">
+        <div>
+          <div class="label">Direct Contact</div>
+          <div class="who">Matthew Courtney</div>
+          <div class="role">Principal · International Energy Partners</div>
+
+          <div class="addr">
+            Galleria Center<br/>
+            2598 East Sunrise Boulevard<br/>
+            Fort Lauderdale, FL 33304
+          </div>
+          <div class="phone">800&nbsp;·&nbsp;290&nbsp;·&nbsp;1021</div>
+        </div>
+
+        <div class="disclaim">
+          This document is confidential and provided for discussion purposes only. It is not an offer to sell or a solicitation of an offer to buy any security; any such offer will be made only by a definitive private placement memorandum to accredited investors. Forward-looking statements involve risks and uncertainties; actual results may differ materially. Past performance is not indicative of future results. Investments may lose value, including principal. © International Energy Partners.
+        </div>
+      </div>
+    </div>
+
+    <div class="footer" style="color:var(--panel-muted)"><span>Participate · Contact</span><span class="folio" style="color:var(--panel-ink)">08 / 08</span></div>
+  </section>
+
+</deck-stage>
+
+<!-- ============== Tweaks Panel ============== -->
+<div id="tweaks" aria-hidden="true">
+  <h4>Tweaks</h4>
+
+  <div class="row">
+    <label>Theme</label>
+    <div class="seg" data-group="theme">
+      <button data-val="navy">Navy</button>
+      <button data-val="green">Green</button>
+      <button data-val="stealth">Stealth</button>
+    </div>
+  </div>
+
+  <div class="row">
+    <label>Accent</label>
+    <div class="swatches" data-group="accent">
+      <div class="sw" style="background:#B08A4A" data-val="#B08A4A" title="Brass"></div>
+      <div class="sw" style="background:#C9A961" data-val="#C9A961" title="Gold"></div>
+      <div class="sw" style="background:#8A6D3B" data-val="#8A6D3B" title="Bronze"></div>
+      <div class="sw" style="background:#6A8E7F" data-val="#6A8E7F" title="Sage"></div>
+      <div class="sw" style="background:#5E7FA3" data-val="#5E7FA3" title="Steel"></div>
+      <div class="sw" style="background:#A84C2A" data-val="#A84C2A" title="Rust"></div>
+    </div>
+  </div>
+
+  <div class="row">
+    <label>Font Pairing</label>
+    <div class="seg" data-group="fontPair">
+      <button data-val="serif-sans">Serif + Sans</button>
+      <button data-val="sans-sans">All Sans</button>
+      <button data-val="serif-serif">All Serif</button>
+    </div>
+  </div>
+
+  <div class="row">
+    <label>Imagery Placeholders</label>
+    <div class="seg two" data-group="showImagery">
+      <button data-val="true">Show</button>
+      <button data-val="false">Hide</button>
+    </div>
+  </div>
+
+  <div class="row">
+    <label>Fund Name</label>
+    <input type="text" id="fundNameInput" />
+  </div>
+
+  <div class="row">
+    <label>Minimum Investment</label>
+    <input type="text" id="minInput" />
+  </div>
+</div>
+
+<script src="deck-stage.js"></script>
+<script>
+  /* ───── Apply tweaks ───── */
+  function applyTweaks(t){
+    document.body.setAttribute('data-theme', t.theme);
+    document.body.setAttribute('data-fontpair', t.fontPair);
+    document.body.setAttribute('data-imagery', t.showImagery ? '1' : '0');
+    document.documentElement.style.setProperty('--accent', t.accent);
+
+    // cover title — split the fund name into last word as italic if multi-word
+    const parts = (t.fundName||'').trim().split(/\s+/);
+    const coverT = document.getElementById('coverTitle');
+    if (parts.length >= 2){
+      const last = parts.pop();
+      coverT.innerHTML = parts.join(' ') + '<br/><em>' + last + '.</em>';
+    } else {
+      coverT.innerHTML = '<em>' + (t.fundName || 'FUND') + '.</em>';
+    }
+
+    document.getElementById('coverMin').textContent = t.minInvestment;
+    document.getElementById('termMin').textContent = t.minInvestment;
+
+    // input values
+    document.getElementById('fundNameInput').value = t.fundName;
+    document.getElementById('minInput').value = t.minInvestment;
+
+    // segmented state
+    document.querySelectorAll('#tweaks .seg').forEach(seg=>{
+      const key = seg.dataset.group;
+      seg.querySelectorAll('button').forEach(b=>{
+        let val = b.dataset.val;
+        let match = String(t[key]) === val;
+        b.setAttribute('aria-pressed', match ? 'true' : 'false');
+      });
+    });
+    document.querySelectorAll('#tweaks .swatches .sw').forEach(sw=>{
+      sw.setAttribute('aria-pressed', sw.dataset.val.toLowerCase() === t.accent.toLowerCase() ? 'true' : 'false');
+    });
+  }
+  applyTweaks(TWEAKS);
+
+  /* ───── Edit-mode protocol (register FIRST, then announce) ───── */
+  window.addEventListener('message', (e)=>{
+    const d = e.data || {};
+    if (d.type === '__activate_edit_mode'){
+      document.getElementById('tweaks').classList.add('open');
+    } else if (d.type === '__deactivate_edit_mode'){
+      document.getElementById('tweaks').classList.remove('open');
+    }
+  });
+  try{ window.parent.postMessage({type:'__edit_mode_available'}, '*'); }catch(e){}
+
+  function persist(patch){
+    Object.assign(TWEAKS, patch);
+    applyTweaks(TWEAKS);
+    try{ window.parent.postMessage({type:'__edit_mode_set_keys', edits: patch}, '*'); }catch(e){}
+  }
+
+  /* Segmented buttons */
+  document.querySelectorAll('#tweaks .seg').forEach(seg=>{
+    seg.addEventListener('click', (e)=>{
+      const b = e.target.closest('button'); if (!b) return;
+      const key = seg.dataset.group;
+      let val = b.dataset.val;
+      if (val === 'true') val = true;
+      else if (val === 'false') val = false;
+      persist({ [key]: val });
+    });
+  });
+
+  /* Swatches */
+  document.querySelectorAll('#tweaks .swatches .sw').forEach(sw=>{
+    sw.addEventListener('click', ()=> persist({ accent: sw.dataset.val }));
+  });
+
+  /* Text inputs (debounced-ish) */
+  document.getElementById('fundNameInput').addEventListener('input', (e)=>{
+    persist({ fundName: e.target.value.toUpperCase() });
+  });
+  document.getElementById('minInput').addEventListener('input', (e)=>{
+    persist({ minInvestment: e.target.value });
+  });
+</script>
+
+</body>
+</html>
