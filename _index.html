@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>International Energy Partners</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'Georgia', 'serif'],
+                        sans: ['Outfit', 'system-ui', 'sans-serif'],
+                    },
+                    colors: {
+                        gold: '#B8924A',
+                        'gold-light': '#CDA96A',
+                        cream: '#FAFAF7',
+                        ink: '#1C1A16',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Outfit', system-ui, sans-serif; background: #FAFAF7; color: #1C1A16; }
+
+        .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.65s ease, transform 0.65s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+
+        nav { transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, opacity 0.4s ease, transform 0.4s ease; }
+        nav.scrolled { background: rgba(250,250,247,0.72); border-bottom: 1px solid rgba(229,223,213,0.5); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
+        nav.nav-hidden { opacity: 0; pointer-events: none; transform: translateY(-8px); }
+
+        /* Nav over hero — white text */
+        nav:not(.scrolled) #nav-logo { color: #fff; }
+        nav:not(.scrolled) .nav-link { color: rgba(255,255,255,0.75); }
+        nav:not(.scrolled) .nav-link:hover { color: #fff; }
+        nav:not(.scrolled) #nav-invest { border-color: rgba(255,255,255,0.6); color: #fff; }
+        nav:not(.scrolled) #nav-invest:hover { background: rgba(255,255,255,0.12); }
+        nav:not(.scrolled) #mobile-toggle { color: #fff; }
+
+        /* Nav scrolled — dark text */
+        nav.scrolled #nav-logo { color: #1C1A16; }
+        nav.scrolled .nav-link { color: #71717a; }
+        nav.scrolled #nav-invest { border-color: #1C1A16; color: #1C1A16; }
+        nav.scrolled #nav-invest:hover { background: #1C1A16; color: #FAFAF7; }
+        nav.scrolled #mobile-toggle { color: #1C1A16; }
+
+        .gold-rule { display: block; width: 2rem; height: 1px; background: #B8924A; margin-bottom: 1rem; }
+
+        .pillar-row { border-top: 1px solid #E5DFD5; transition: background 0.2s ease; cursor: default; }
+        .pillar-row:last-child { border-bottom: 1px solid #E5DFD5; }
+        .pillar-row:hover { background: rgba(184,146,74,0.04); }
+
+        .stat-num { font-family: 'Playfair Display', serif; }
+
+        input, select, textarea { transition: border-color 0.2s ease; }
+        input:focus, select:focus, textarea:focus { outline: none; border-color: #B8924A; }
+
+        .nav-link { position: relative; }
+        .nav-link::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 1px; background: #B8924A; transition: width 0.2s ease; }
+        .nav-link:hover::after { width: 100%; }
+
+        /* Line-by-line heading reveals */
+        .reveal-line { display: block; opacity: 0; transform: translateY(18px); transition: opacity 0.65s ease, transform 0.65s ease; }
+        .reveal-line.visible { opacity: 1; transform: translateY(0); }
+
+        /* Ticker */
+        .ticker-wrap { overflow: hidden; }
+        .ticker-track { display: flex; white-space: nowrap; animation: ticker-scroll 28s linear infinite; }
+        .ticker-track:hover { animation-play-state: paused; }
+        @keyframes ticker-scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- ─── PILLAR PROGRESS BAR ─────────────────────────── -->
+    <div id="pillar-bar" class="fixed left-0 top-0 w-[2px] h-screen z-40 pointer-events-none opacity-0" style="background:rgba(184,146,74,0.18); transition: opacity 0.35s;">
+        <div id="pillar-bar-fill" class="w-full h-full origin-top" style="background:#B8924A; transform: scaleY(0); transition: transform 0.07s linear;"></div>
+    </div>
+
+    <!-- ─── NAV ─────────────────────────────────────────── -->
+    <nav id="nav" class="fixed top-0 left-0 right-0 z-50 px-6 md:px-12 py-2.5">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <a href="#" id="nav-logo" class="font-serif text-xl font-medium tracking-tight transition-colors">IEP</a>
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#pillars" class="nav-link text-sm transition-colors">What We Do</a>
+                <a href="#about"   class="nav-link text-sm transition-colors">About</a>
+                <a href="#invest"  class="nav-link text-sm transition-colors">Fund</a>
+                <a href="#invest"  id="nav-invest" class="text-sm border px-5 py-1.5 transition-colors tracking-wide">Invest</a>
+            </div>
+            <button id="mobile-toggle" class="md:hidden text-ink p-1">
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                    <path d="M3 6h16M3 11h16M3 16h16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+            </button>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 right-0 bg-cream border-t border-stone-200 px-6 py-6 flex flex-col gap-5">
+            <a href="#pillars" class="text-sm text-zinc-600">What We Do</a>
+            <a href="#about"   class="text-sm text-zinc-600">About</a>
+            <a href="#invest"  class="text-sm text-zinc-600">Fund</a>
+            <a href="#invest"  class="text-sm border border-ink text-ink px-5 py-2.5 text-center">Invest</a>
+        </div>
+    </nav>
+
+    <!-- ─── HERO ──────────────────────────────────────────── -->
+    <section class="relative min-h-[100dvh] flex items-end">
+        <div class="absolute inset-0">
+            <video class="w-full h-full object-cover" autoplay loop muted playsinline>
+                <source src="assets/video/hero.mp4" type="video/mp4">
+            </video>
+            <!-- Gradient: left vignette for text, light top for nav, bottom fade -->
+            <div class="absolute inset-0" style="background: linear-gradient(to right, rgba(28,26,22,0.72) 0%, rgba(28,26,22,0.35) 45%, transparent 75%);"></div>
+            <div class="absolute inset-0" style="background: linear-gradient(to bottom, rgba(28,26,22,0.35) 0%, transparent 22%);"></div>
+            <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(28,26,22,0.55) 0%, transparent 38%);"></div>
+        </div>
+        <div class="relative max-w-7xl mx-auto px-6 md:px-12 pb-20 md:pb-32 w-full">
+            <div class="max-w-xl">
+                <p class="text-[15.4px] tracking-[0.2em] uppercase font-semibold mb-6" style="color:#D4A855; text-shadow: 0 1px 4px rgba(0,0,0,0.6);">International Energy Partners</p>
+                <h1 class="font-serif text-5xl md:text-6xl lg:text-7xl text-white font-medium leading-[1.05] mb-7" style="text-shadow: 0 2px 12px rgba(0,0,0,0.5);">
+                    The Future,<br>Financed.
+                </h1>
+                <p class="text-base md:text-lg text-stone-100 mb-10 leading-relaxed font-normal max-w-md" style="text-shadow: 0 1px 8px rgba(0,0,0,0.5);">
+                    Spectre Equity Fund I finances the infrastructure of the energy transition — LNG arbitrage, strategic equity, and distributed power.
+                </p>
+                <a href="#invest" class="inline-flex items-center gap-3 bg-gold text-white text-sm font-medium px-7 py-3.5 hover:bg-gold-light transition-colors">
+                    Request Information
+                    <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M1 6.5h11M7.5 2l4.5 4.5L7.5 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── MISSION ──────────────────────────────────────── -->
+    <section id="mission" class="py-28 md:py-40 bg-white">
+        <div class="max-w-7xl mx-auto px-6 md:px-12">
+            <div class="grid md:grid-cols-12 gap-12 md:gap-24 items-start">
+                <div class="md:col-span-5">
+                    <span class="gold-rule"></span>
+                    <p class="text-xs tracking-[0.15em] uppercase text-gold mb-8 font-medium">Our Thesis</p>
+                    <h2 class="font-serif text-2xl md:text-3xl text-ink leading-relaxed italic reveal">
+                        "Energy transition is not a single event. It is a decade-long infrastructure buildout — and infrastructure requires capital."
+                    </h2>
+                </div>
+                <div class="md:col-span-7 flex flex-col gap-7 md:pt-16">
+                    <p class="text-zinc-600 leading-relaxed reveal reveal-delay-1">
+                        The United States sits atop the world's largest natural gas reserves at a moment when European and Asian demand for LNG has never been higher. The price spread between US production costs and delivered export prices represents one of the most durable arbitrage opportunities in global commodities.
+                    </p>
+                    <p class="text-zinc-600 leading-relaxed reveal reveal-delay-2">
+                        At the same time, the infrastructure required to move, store, and distribute energy — EV charging corridors, data center power grids, distributed generation — is chronically underfunded relative to demand. IEP targets this gap across three investment pillars.
+                    </p>
+                    <p class="text-zinc-600 leading-relaxed reveal reveal-delay-3">
+                        Spectre Equity Fund I is structured for accredited investors seeking exposure to hard-asset energy infrastructure with asymmetric return potential. Minimum investment: $100,000. SEC Reg D 506(c).
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── THREE PILLARS ────────────────────────────────── -->
+    <!-- Each pillar owns a full sticky viewport. 200vh each = generous scroll room. -->
+    <section id="pillars" class="bg-cream">
+
+        <!-- Desktop: per-pillar sticky sections -->
+        <div class="hidden md:block">
+
+            <!-- 01 LNG Arbitrage -->
+            <div id="pillar-section-0" class="relative" style="height:200vh;">
+                <div class="sticky top-0 h-screen overflow-hidden">
+                    <canvas id="pillar-canvas-0" class="absolute inset-0 w-full h-full"></canvas>
+                    <div class="absolute inset-0" style="background: linear-gradient(to right, rgba(250,250,247,0.92) 0%, rgba(250,250,247,0.7) 38%, rgba(250,250,247,0.1) 62%, transparent 80%);"></div>
+                    <div class="absolute inset-0 flex flex-col justify-center px-16 w-1/2">
+                        <span class="font-serif font-bold leading-none select-none mb-4" style="font-size:7rem; color:#EFEFED; line-height:1;">01</span>
+                        <p class="text-xs tracking-[0.2em] uppercase text-gold font-medium mb-1">Investment Pillars</p>
+                        <h3 class="font-serif text-4xl text-ink mb-1">LNG Arbitrage</h3>
+                        <p class="text-xs text-zinc-400 tracking-widest uppercase mb-6">Commodities</p>
+                        <p class="text-zinc-600 leading-relaxed text-sm max-w-sm">US Henry Hub natural gas trades at a fraction of European TTF and Asian JKM spot prices. IEP structures paper ownership positions against pre-matched sell-side LNG export contracts, capturing the spread without physical delivery risk.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 02 Strategic Equity -->
+            <div id="pillar-section-1" class="relative" style="height:200vh;">
+                <div class="sticky top-0 h-screen overflow-hidden">
+                    <canvas id="pillar-canvas-1" class="absolute inset-0 w-full h-full"></canvas>
+                    <div class="absolute inset-0" style="background: linear-gradient(to right, rgba(250,250,247,0.92) 0%, rgba(250,250,247,0.7) 38%, rgba(250,250,247,0.1) 62%, transparent 80%);"></div>
+                    <div class="absolute inset-0 flex flex-col justify-center px-16 w-1/2">
+                        <span class="font-serif font-bold leading-none select-none mb-4" style="font-size:7rem; color:#EFEFED; line-height:1;">02</span>
+                        <p class="text-xs tracking-[0.2em] uppercase text-gold font-medium mb-1">Investment Pillars</p>
+                        <h3 class="font-serif text-4xl text-ink mb-1">Strategic Equity</h3>
+                        <p class="text-xs text-zinc-400 tracking-widest uppercase mb-6">Public Equity</p>
+                        <p class="text-zinc-600 leading-relaxed text-sm max-w-sm">Sub-5% stealth positions in undervalued public clean-energy operators with durable infrastructure moats and contracted revenue. IEP targets a specific sector leader in CNG and LNG fueling for long-haul commercial transport, trading at a meaningful discount to intrinsic value.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 03 Charging & Data -->
+            <div id="pillar-section-2" class="relative" style="height:200vh;">
+                <div class="sticky top-0 h-screen overflow-hidden">
+                    <canvas id="pillar-canvas-2" class="absolute inset-0 w-full h-full"></canvas>
+                    <div class="absolute inset-0" style="background: linear-gradient(to right, rgba(250,250,247,0.92) 0%, rgba(250,250,247,0.7) 38%, rgba(250,250,247,0.1) 62%, transparent 80%);"></div>
+                    <div class="absolute inset-0 flex flex-col justify-center px-16 w-1/2">
+                        <span class="font-serif font-bold leading-none select-none mb-4" style="font-size:7rem; color:#EFEFED; line-height:1;">03</span>
+                        <p class="text-xs tracking-[0.2em] uppercase text-gold font-medium mb-1">Investment Pillars</p>
+                        <h3 class="font-serif text-4xl text-ink mb-1">Charging & Data</h3>
+                        <p class="text-xs text-zinc-400 tracking-widest uppercase mb-6">Infrastructure</p>
+                        <p class="text-zinc-600 leading-relaxed text-sm max-w-sm">On-site gas-to-power generation for EV fast-charging corridors and municipal data centers. As grid constraints limit utility-scale electrification, distributed generation becomes a critical infrastructure layer — one that IEP is positioned to finance and operate.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Mobile: stacked rows -->
+        <div class="md:hidden py-20 px-6">
+            <span class="gold-rule"></span>
+            <p class="text-xs tracking-[0.15em] uppercase text-gold mb-4 font-medium">Investment Pillars</p>
+            <h2 class="font-serif text-3xl text-ink mb-12">Three vectors.<br>One thesis.</h2>
+            <div class="pillar-row py-8">
+                <h3 class="font-serif text-xl text-ink">LNG Arbitrage</h3>
+                <p class="text-xs text-zinc-400 tracking-widest uppercase mt-1 mb-3">Commodities</p>
+                <p class="text-zinc-500 leading-relaxed text-sm">US Henry Hub natural gas trades at a fraction of European TTF and Asian JKM spot prices. IEP structures paper ownership positions against pre-matched sell-side LNG export contracts, capturing the spread without physical delivery risk.</p>
+            </div>
+            <div class="pillar-row py-8">
+                <h3 class="font-serif text-xl text-ink">Strategic Equity</h3>
+                <p class="text-xs text-zinc-400 tracking-widest uppercase mt-1 mb-3">Public Equity</p>
+                <p class="text-zinc-500 leading-relaxed text-sm">Sub-5% stealth positions in undervalued public clean-energy operators with durable infrastructure moats and contracted revenue. IEP targets a specific sector leader in CNG and LNG fueling for long-haul commercial transport.</p>
+            </div>
+            <div class="pillar-row py-8">
+                <h3 class="font-serif text-xl text-ink">Charging & Data</h3>
+                <p class="text-xs text-zinc-400 tracking-widest uppercase mt-1 mb-3">Infrastructure</p>
+                <p class="text-zinc-500 leading-relaxed text-sm">On-site gas-to-power generation for EV fast-charging corridors and municipal data centers. As grid constraints limit utility-scale electrification, distributed generation becomes a critical infrastructure layer.</p>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- ─── FEATURED INVESTMENT ──────────────────────────── -->
+    <section id="investment" class="py-28 md:py-40 bg-zinc-900">
+        <div class="max-w-7xl mx-auto px-6 md:px-12">
+            <div class="grid md:grid-cols-12 gap-12 md:gap-24 items-start">
+                <div class="md:col-span-5">
+                    <span class="gold-rule"></span>
+                    <p class="text-xs tracking-[0.15em] uppercase text-gold mb-8 font-medium">Target Acquisition</p>
+                    <h2 class="font-serif text-3xl md:text-4xl text-white mb-7 leading-snug reveal">
+                        A sector leader.<br>At a discount.
+                    </h2>
+                    <p class="text-zinc-400 leading-relaxed mb-10 text-sm md:text-base reveal reveal-delay-1">
+                        IEP has identified a publicly traded clean-energy infrastructure operator with the largest alternative fuel network for long-haul commercial trucking in North America. The company trades at a significant discount to its contracted infrastructure value — with hard assets, long-term take-or-pay contracts, and no meaningful competition at scale.
+                    </p>
+                    <a href="#invest" class="inline-flex items-center gap-3 text-gold text-sm border border-gold px-6 py-3 hover:bg-gold hover:text-white transition-colors reveal reveal-delay-2">
+                        Request Full Thesis
+                        <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M1 6.5h11M7.5 2l4.5 4.5L7.5 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </a>
+                </div>
+                <div class="md:col-span-7">
+                    <div class="grid grid-cols-2 gap-px" style="background:#3F3F46;">
+                        <div class="bg-zinc-900 p-8 md:p-10 reveal">
+                            <p class="text-xs text-zinc-500 uppercase tracking-widest mb-3">Sector</p>
+                            <p class="font-serif text-xl md:text-2xl text-white">Alternative Fuel Infrastructure</p>
+                        </div>
+                        <div class="bg-zinc-900 p-8 md:p-10 reveal reveal-delay-1">
+                            <p class="text-xs text-zinc-500 uppercase tracking-widest mb-3">Position Type</p>
+                            <p class="font-serif text-xl md:text-2xl text-white">Sub-5% Public Equity</p>
+                        </div>
+                        <div class="bg-zinc-900 p-8 md:p-10 reveal reveal-delay-2">
+                            <p class="text-xs text-zinc-500 uppercase tracking-widest mb-3">End Market</p>
+                            <p class="font-serif text-xl md:text-2xl text-white">Long-Haul Commercial Transport</p>
+                        </div>
+                        <div class="bg-zinc-900 p-8 md:p-10 reveal reveal-delay-3">
+                            <p class="text-xs text-zinc-500 uppercase tracking-widest mb-3">Revenue Profile</p>
+                            <p class="font-serif text-xl md:text-2xl text-white">Contracted, Hard-Asset Backed</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── MARKET STATS ─────────────────────────────────── -->
+    <section id="stats" class="py-28 md:py-40 bg-white">
+        <div class="max-w-7xl mx-auto px-6 md:px-12">
+            <span class="gold-rule"></span>
+            <p class="text-xs tracking-[0.15em] uppercase text-gold mb-5 font-medium">Market Opportunity</p>
+            <h2 class="font-serif text-3xl md:text-4xl text-ink mb-16 md:mb-20 reveal">
+                The numbers<br>behind the thesis.
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-px" style="background:#E5DFD5;">
+                <div class="bg-white p-10 reveal">
+                    <p class="stat-num text-5xl md:text-6xl text-ink font-medium mb-4">#1</p>
+                    <p class="text-sm font-medium text-ink mb-2">US Natural Gas Reserves</p>
+                    <p class="text-sm text-zinc-500 leading-relaxed">The United States holds the world's largest proven natural gas reserves — the structural foundation of the LNG arbitrage thesis.</p>
+                </div>
+                <div class="bg-white p-10 reveal reveal-delay-1">
+                    <p class="stat-num text-5xl md:text-6xl text-ink font-medium mb-4">3–5×</p>
+                    <p class="text-sm font-medium text-ink mb-2">Henry Hub → TTF Spread</p>
+                    <p class="text-sm text-zinc-500 leading-relaxed">European delivered LNG prices consistently trade at 3–5× US production costs, a structural arbitrage rooted in geography and regulation.</p>
+                </div>
+                <div class="bg-white p-10 reveal reveal-delay-2">
+                    <p class="stat-num text-5xl md:text-6xl text-ink font-medium mb-4">#1</p>
+                    <p class="text-sm font-medium text-ink mb-2">US LNG Export Volume</p>
+                    <p class="text-sm text-zinc-500 leading-relaxed">The US surpassed Qatar and Australia in 2023 to become the world's largest LNG exporter by volume — validating the structural demand thesis.</p>
+                </div>
+                <div class="bg-white p-10 reveal">
+                    <p class="stat-num text-5xl md:text-6xl text-ink font-medium mb-4">$100B+</p>
+                    <p class="text-sm font-medium text-ink mb-2">EV Charging Infrastructure Gap</p>
+                    <p class="text-sm text-zinc-500 leading-relaxed">The US requires over $100 billion in fast-charging infrastructure investment by 2030 to meet federal electrification targets — the majority unfunded.</p>
+                </div>
+                <div class="bg-white p-10 reveal reveal-delay-1">
+                    <p class="stat-num text-5xl md:text-6xl text-ink font-medium mb-4">3×</p>
+                    <p class="text-sm font-medium text-ink mb-2">Data Center Power Demand Growth</p>
+                    <p class="text-sm text-zinc-500 leading-relaxed">AI and cloud workloads are projected to triple US data center power consumption by 2030, outpacing grid expansion and driving on-site generation demand.</p>
+                </div>
+                <div class="bg-white p-10 reveal reveal-delay-2">
+                    <p class="stat-num text-5xl md:text-6xl text-ink font-medium mb-4">$4T</p>
+                    <p class="text-sm font-medium text-ink mb-2">Annual Capital Required</p>
+                    <p class="text-sm text-zinc-500 leading-relaxed">The IEA estimates $4 trillion in annual energy investment is required through 2030 to meet global transition targets — the majority with no committed source of funding.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── TICKER ─────────────────────────────────────────── -->
+    <div class="ticker-wrap bg-ink py-4 border-t border-zinc-800">
+        <div class="ticker-track">
+            <span class="text-xs tracking-[0.18em] uppercase text-zinc-400 px-10">$100K Minimum</span><span class="text-gold px-2">·</span>
+            <span class="text-xs tracking-[0.18em] uppercase text-zinc-400 px-10">Accredited Investors Only</span><span class="text-gold px-2">·</span>
+            <span class="text-xs tracking-[0.18em] uppercase text-zinc-400 px-10">SEC Reg D 506(c)</span><span class="text-gold px-2">·</span>
+            <span class="text-xs tracking-[0.18em] uppercase text-zinc-400 px-10">Spectre Equity Fund I</span><span class="text-gold px-2">·</span>
+            <span class="text-xs tracking-[0.18em] uppercase text-zinc-400 px-10">Energy Transition Infrastructure</span><span class="text-gold px-2">·</span>
+            <span class="text-xs tracking-[0.18em] uppercase text-zinc-400 px-10">LNG · Strategic Equity · Distributed Power</span><span class="text-gold px-2">·</span>
+            <!-- duplicate for seamless loop -->
+            <span class="text-xs tracking-[0.18em] uppercase text-zinc-400 px-10">$100K Minimum</span><span class="text-gold px-2">·</span>
+            <span class="text-xs tracking-[0.18em] uppercase text-zinc-400 px-10">Accredited Investors Only</span><span class="text-gold px-2">·</span>
+            <span class="text-xs tracking-[0.18em] uppercase text-zinc-400 px-10">SEC Reg D 506(c)</span><span class="text-gold px-2">·</span>
+            <span class="text-xs tracking-[0.18em] uppercase text-zinc-400 px-10">Spectre Equity Fund I</span><span class="text-gold px-2">·</span>
+            <span class="text-xs tracking-[0.18em] uppercase text-zinc-400 px-10">Energy Transition Infrastructure</span><span class="text-gold px-2">·</span>
+            <span class="text-xs tracking-[0.18em] uppercase text-zinc-400 px-10">LNG · Strategic Equity · Distributed Power</span><span class="text-gold px-2">·</span>
+        </div>
+    </div>
+
+    <!-- ─── ABOUT ─────────────────────────────────────────── -->
+    <section id="about" class="py-28 md:py-40 bg-cream">
+        <div class="max-w-7xl mx-auto px-6 md:px-12">
+            <span class="gold-rule"></span>
+            <p class="text-xs tracking-[0.15em] uppercase text-gold mb-16 font-medium">Leadership</p>
+            <div class="grid md:grid-cols-12 gap-12 md:gap-20">
+                <div class="md:col-span-4">
+                    <div class="aspect-[3/4] bg-zinc-200 overflow-hidden mb-6">
+                        <img src="assets/images/derek-full.png" alt="Derek, Managing Partner" class="w-full h-full object-cover object-top" style="filter: grayscale(20%);">
+                    </div>
+                    <p class="font-serif text-xl text-ink">Derek Saunders</p>
+                    <p class="text-sm text-zinc-500 mt-1">Managing Partner, IEP</p>
+                </div>
+                <div class="md:col-span-8 flex flex-col justify-center">
+                    <h2 class="font-serif text-3xl md:text-4xl text-ink mb-8 leading-snug reveal">
+                        Decades in energy.<br>Built for this moment.
+                    </h2>
+                    <p class="text-zinc-500 leading-relaxed mb-6 reveal reveal-delay-1">
+                        Derek brings extensive experience in energy sector finance and infrastructure investment. His career spans principal roles at established firms where he developed the operational and financial frameworks that underpin IEP's investment thesis.
+                    </p>
+                    <p class="text-zinc-500 leading-relaxed mb-12 reveal reveal-delay-2">
+                        International Energy Partners was founded to act on a specific, time-bound thesis: that the structural arbitrage between US natural gas production economics and global LNG demand represents a generational capital deployment opportunity — one that requires the kind of sector expertise most fund managers do not have.
+                    </p>
+                    <div class="flex flex-wrap gap-8 items-center reveal reveal-delay-3">
+                        <img src="assets/images/logos/lf-rothschild.png"   alt="LF Rothschild"   class="hidden h-7 object-contain opacity-40 grayscale hover:opacity-70 transition-opacity">
+                        <img src="assets/images/logos/lockheed-martin.svg" alt="Lockheed Martin" class="hidden h-6 object-contain opacity-40 grayscale hover:opacity-70 transition-opacity">
+                        <img src="assets/images/logos/siemens.svg"         alt="Siemens"         class="hidden h-6 object-contain opacity-40 grayscale hover:opacity-70 transition-opacity">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── INVEST ────────────────────────────────────────── -->
+    <section id="invest" class="py-28 md:py-40 bg-ink">
+        <div class="max-w-7xl mx-auto px-6 md:px-12">
+            <div class="grid md:grid-cols-12 gap-12 md:gap-24 items-start">
+                <div class="md:col-span-6">
+                    <span class="gold-rule"></span>
+                    <p class="text-xs tracking-[0.15em] uppercase text-gold mb-8 font-medium">Spectre Equity Fund I</p>
+                    <h2 class="font-serif text-3xl md:text-4xl text-white mb-7 leading-snug reveal">
+                        Qualified investors.<br>Serious capital.
+                    </h2>
+                    <p class="text-zinc-400 leading-relaxed mb-12 text-sm md:text-base reveal reveal-delay-1">
+                        Spectre Equity Fund I is open to accredited investors under SEC Regulation D 506(c). We accept qualified inquiries from individuals and institutions meeting the accreditation threshold.
+                    </p>
+                    <div class="grid grid-cols-2 gap-x-8 gap-y-8 reveal reveal-delay-2">
+                        <div>
+                            <p class="text-xs text-zinc-400 uppercase tracking-widest mb-2">Minimum Investment</p>
+                            <p class="font-serif text-2xl text-white">$100,000</p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-zinc-400 uppercase tracking-widest mb-2">Regulatory Structure</p>
+                            <p class="font-serif text-2xl text-white">Reg D 506(c)</p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-zinc-400 uppercase tracking-widest mb-2">Eligible Investors</p>
+                            <p class="font-serif text-2xl text-white">Accredited Only</p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-zinc-400 uppercase tracking-widest mb-2">Contact</p>
+                            <p class="font-serif text-xl text-white">derek@internationalenergypartners.energy</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:col-span-6">
+                    <div class="border border-zinc-700 p-8 md:p-10">
+                        <h3 class="font-serif text-xl text-white mb-8">Request Information</h3>
+                        <form id="invest-form" class="flex flex-col gap-6">
+                            <div>
+                                <label class="text-xs text-zinc-400 uppercase tracking-widest block mb-2">Full Name</label>
+                                <input type="text" class="w-full bg-transparent border border-zinc-700 text-white px-4 py-3 text-sm" placeholder="Your name">
+                            </div>
+                            <div>
+                                <label class="text-xs text-zinc-400 uppercase tracking-widest block mb-2">Email Address</label>
+                                <input type="email" class="w-full bg-transparent border border-zinc-700 text-white px-4 py-3 text-sm" placeholder="your@email.com">
+                            </div>
+                            <div>
+                                <label class="text-xs text-zinc-400 uppercase tracking-widest block mb-2">Investor Type</label>
+                                <select class="w-full bg-zinc-900 border border-zinc-700 text-zinc-300 px-4 py-3 text-sm appearance-none">
+                                    <option>Individual — $200K+ income or $1M+ net worth</option>
+                                    <option>Institutional investor</option>
+                                    <option>I'd like to learn more about accreditation</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="text-xs text-zinc-400 uppercase tracking-widest block mb-2">Message (optional)</label>
+                                <textarea rows="3" class="w-full bg-transparent border border-zinc-700 text-white px-4 py-3 text-sm resize-none" placeholder="Brief background or specific questions…"></textarea>
+                            </div>
+                            <button type="submit" class="bg-gold text-white text-sm font-medium px-6 py-4 hover:bg-gold-light transition-colors tracking-wide mt-1">
+                                Send Request
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── FOOTER ────────────────────────────────────────── -->
+    <footer class="bg-ink border-t border-zinc-800 py-12">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+            <div>
+                <p class="font-serif text-white text-lg mb-1">International Energy Partners</p>
+                <p class="text-xs text-zinc-400">derek@internationalenergypartners.energy</p>
+            </div>
+            <p class="text-xs text-zinc-400 max-w-sm leading-relaxed">
+                This is not an offer to sell or a solicitation of an offer to buy securities. Any offering is made only by means of a private placement memorandum to accredited investors. Past performance does not guarantee future results.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Nav scroll state — hide when pillars section is reached
+        const nav = document.getElementById('nav');
+        const pillarsSection = document.getElementById('pillars');
+        window.addEventListener('scroll', () => {
+            const pillarsTop = pillarsSection.getBoundingClientRect().top;
+            nav.classList.toggle('nav-hidden', pillarsTop <= 0);
+        }, { passive: true });
+
+        // Mobile menu toggle
+        document.getElementById('mobile-toggle').addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+
+        // Scroll reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+        }, { threshold: 0.12 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // HubSpot form — open in new tab on submit
+        document.getElementById('invest-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            window.open('https://40t426.share-na2.hsforms.com/2ly1L36UdQSm6quKAxdI2Dg', '_blank');
+        });
+
+        // ─── LINE-BY-LINE HEADING REVEALS ────────────────────
+        document.querySelectorAll('h1, h2').forEach(el => {
+            if (!el.innerHTML.includes('<br>')) return;
+            el.classList.remove('reveal');
+            const parts = el.innerHTML.split(/<br\s*\/?>/i);
+            el.innerHTML = parts.map((p, i) =>
+                `<span class="reveal-line" style="${i > 0 ? 'transition-delay:0.09s' : ''}">${p}</span>`
+            ).join('');
+            el.querySelectorAll('.reveal-line').forEach(s => observer.observe(s));
+        });
+
+        // ─── STAT COUNTERS ────────────────────────────────────
+        const statObs = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (!e.isIntersecting) return;
+                const el = e.target;
+                const target = +el.dataset.target, pre = el.dataset.pre, suf = el.dataset.suf;
+                const dur = 1400, t0 = performance.now();
+                const tick = t => {
+                    const p = Math.min(1, (t - t0) / dur);
+                    el.textContent = pre + Math.round((1 - Math.pow(1 - p, 3)) * target) + suf;
+                    if (p < 1) requestAnimationFrame(tick); else statObs.unobserve(el);
+                };
+                requestAnimationFrame(tick);
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('.stat-num').forEach(el => {
+            const text = el.textContent.trim();
+            if (text.includes('–')) return;
+            const m = text.match(/^([^0-9]*)(\d+)(.*)$/);
+            if (!m) return;
+            const [, pre, numStr, suf] = m;
+            el.dataset.pre = pre; el.dataset.suf = suf; el.dataset.target = +numStr;
+            el.textContent = pre + '0' + suf;
+            statObs.observe(el);
+        });
+
+        // ─── PILLAR PROGRESS BAR ──────────────────────────────
+        const pillarBar = document.getElementById('pillar-bar');
+        const pillarBarFill = document.getElementById('pillar-bar-fill');
+        window.addEventListener('scroll', () => {
+            const rect = pillarsSection.getBoundingClientRect();
+            const inView = rect.top <= 0 && rect.bottom >= window.innerHeight;
+            pillarBar.style.opacity = inView ? '1' : '0';
+            const progress = Math.max(0, Math.min(1, -rect.top / (pillarsSection.offsetHeight - window.innerHeight)));
+            pillarBarFill.style.transform = `scaleY(${progress})`;
+        }, { passive: true });
+
+        // ─── PILLAR SCROLL SCRUBBERS (one per section) ───────
+        (function () {
+            const pillars = [
+                { sectionId: 'pillar-section-0', canvasId: 'pillar-canvas-0', base: 'assets/frames/lng',    count: 60, cropBottom: 0 },
+                { sectionId: 'pillar-section-1', canvasId: 'pillar-canvas-1', base: 'assets/frames/equity', count: 60, cropBottom: 0.09 },
+                { sectionId: 'pillar-section-2', canvasId: 'pillar-canvas-2', base: null, count: 0,          cropBottom: 0 },
+            ];
+
+            pillars.forEach(({ sectionId, canvasId, base, count, cropBottom }) => {
+                const section = document.getElementById(sectionId);
+                const canvas  = document.getElementById(canvasId);
+                if (!section || !canvas) return;
+
+                const ctx = canvas.getContext('2d');
+
+                function resize() {
+                    canvas.width  = canvas.offsetWidth  * devicePixelRatio;
+                    canvas.height = canvas.offsetHeight * devicePixelRatio;
+                }
+                resize();
+                window.addEventListener('resize', resize, { passive: true });
+
+                if (!base || count === 0) return;
+
+                const frames = [];
+                for (let i = 1; i <= count; i++) {
+                    const img = new Image();
+                    img.src = `${base}/frame_${String(i).padStart(4, '0')}.jpg`;
+                    frames.push(img);
+                }
+
+                function paint(idx) {
+                    const img = frames[Math.min(idx, frames.length - 1)];
+                    if (!img || !img.complete || !img.naturalWidth) return;
+                    const cw = canvas.width, ch = canvas.height;
+                    const sw = img.naturalWidth, sh = img.naturalHeight * (1 - cropBottom);
+                    // cover: scale so image fills canvas, centered
+                    const scale = Math.max(cw / sw, ch / sh);
+                    const dw = sw * scale, dh = sh * scale;
+                    ctx.drawImage(img, 0, 0, sw, sh, (cw - dw) / 2, (ch - dh) / 2, dw, dh);
+                }
+
+                frames[0].addEventListener('load', () => paint(0));
+
+                window.addEventListener('scroll', () => {
+                    const rect       = section.getBoundingClientRect();
+                    const scrollable = section.offsetHeight - window.innerHeight;
+                    const progress   = Math.max(0, Math.min(1, -rect.top / scrollable));
+                    paint(Math.floor(progress * (frames.length - 1)));
+                }, { passive: true });
+            });
+        })();
+    </script>
+</body>
+</html>
