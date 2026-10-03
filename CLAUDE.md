@@ -35,8 +35,8 @@ npm run serve   # browser-sync only
 ## Brand Structure
 - **Company:** International Energy Partners (IEP) — this is the primary brand
 - **Fund I:** Spectre Equity — first fund within IEP, not the company name
-- **Domain:** `spectreequity.com` (best available .com; `iep.energy` also owned)
-- **Derek's email:** `derek@spectreequity.com`
+- **Domain:** none — served from GitHub Pages at `nicnosis.github.io/iep` (`iep.energy` owned, unused)
+- **Derek's email:** `derek@internationalenergypartners.energy`
 - The website represents IEP as a company; Spectre Equity is introduced as the featured fund offering
 - Do not use "Spectre Equity" as the top-level brand — it's Fund I within IEP
 
@@ -97,7 +97,7 @@ Installed via `npx skills add https://github.com/Leonxlnx/taste-skill`
 | HubSpot form | `https://40t426.share-na2.hsforms.com/2ly1L36UdQSm6quKAxdI2Dg` |
 | Manus slide deck | `https://hgukjzfj.manus.space/` |
 | fal.ai viewer | `assets/gen/viewer.html` |
-| Domain | `spectreequity.com` (GitHub Pages) |
+| URL | `https://nicnosis.github.io/iep/` (GitHub Pages, no custom domain) |
 
 ## Asset Generation
 - **Script:** `node scripts/gen.js --prompt "…" --model nano-banana-pro --ratio 16:9 --res 1K --name my-img --tag "03 Charging & Data"`

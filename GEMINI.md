@@ -39,8 +39,8 @@ npm run serve   # browser-sync only
 ## Brand Structure
 - **Company:** International Energy Partners (IEP) — this is the primary brand
 - **Fund I:** Spectre Equity — first fund within IEP, not the company name
-- **Domain:** `spectreequity.com` (best available .com; `iep.energy` also owned)
-- **Derek's email:** `derek@spectreequity.com`
+- **Domain:** none — served from GitHub Pages at `nicnosis.github.io/iep` (`iep.energy` owned, unused)
+- **Derek's email:** `derek@internationalenergypartners.energy`
 - The website represents IEP as a company; Spectre Equity is introduced as the featured fund offering
 - Do not use "Spectre Equity" as the top-level brand — it's Fund I within IEP
 
